@@ -1,0 +1,143 @@
+//move breadcrumb
+.page-id-15 {
+
+    #breadcrumbs {
+        margin-left: 0;
+
+        @media screen and ( min-width: $query__small ) {
+            margin-left: 7.5%;
+        }
+    }
+}
+
+.contact-wrapper {
+
+    .contact-now {
+        height: 300px;
+        max-height: 300px;
+        background: none;
+
+        &:before {
+            background: none;
+        }
+
+        .contact-now-text {
+            box-shadow: none;
+            width: 100%;
+            top: 5%;
+
+            @media screen and ( min-width: 397px ) {
+                width: 80%;
+            }
+
+            @media screen and ( min-width: 775px ) {
+                top: 25%;
+            }
+        }
+    }
+
+    .map-form {
+        position: relative;
+        
+        #wpgmza_map {
+            display: none !important;
+            position: absolute;
+            float: none;
+
+            @media screen and ( min-width: $query__small ) {
+                display: block !important;
+            }
+        }
+
+        .nf-form-cont {
+            width: 300px;
+            margin: 0 auto;
+            border: 1px solid transparent;
+            position: relative;
+            background: #1bbde8;
+            padding: 50px 30px;
+
+            @media screen and ( min-width: $query__small ) {
+                width: 400px;
+                left: 10%;
+            }
+            
+            @media screen and ( min-width: 850px ) {
+                width: 500px;
+                left: 20%;
+            }
+
+            h3 {
+                font-size: 1.25rem;
+                color: #fff;
+                text-align: center;
+                margin-bottom: 2em;
+            }
+
+            .first.one-half {
+                width: 100%;
+            }
+
+            .nf-field {
+                border-bottom: 1px solid #eee; 
+            }
+
+            .submit-container .nf-field {
+                border: none;
+            }
+
+            .field-wrap,
+            .nf-element {
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .nf-field-container {
+                margin-bottom: 15px;
+            }
+
+            .nf-field-label {
+                margin-bottom: 5px;
+                display: none;
+            
+                label {
+                    font-size: 1.1rem;
+                }
+            }
+
+            .nf-field-element textarea {
+                height: 80px;
+            }
+
+            .list-radio-wrap .nf-field-element li label {
+                font-size: 1.05rem;
+            }
+
+            .nf-before-form-content {
+                display: none;
+            }
+
+            .nf-field-element {
+
+                input,
+                textarea {
+                    border: none;
+                    background: #1bbde8;
+                    font-size: 1.1rem;
+                    color: #fff;
+
+                    &[value="Submit Quote Request"] {
+                        background: #fff;
+                        color: #1bbde8;
+                        display: block;
+                        margin: 2em auto 0;
+                        padding: 10px 20px;
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+        }
+    }
+}

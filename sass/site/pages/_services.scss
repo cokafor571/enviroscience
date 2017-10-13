@@ -1,0 +1,161 @@
+// cut off header image, space out header text, minimize page content
+.page-id-72,
+.page-id-70,
+.page-id-68,
+.page-id-66,
+.page-id-64 {
+
+    .header-image {
+        max-height: 60vh;
+    }
+
+    .site-header {
+
+        @media screen and (min-width: $query__medium) {
+            top: 300px;
+        }
+    }
+
+    .site-content {
+        max-width: 1080px;
+    }
+}
+
+// all services
+.asbestos, 
+.lead,
+.mold,
+.soil,
+.home-remodeling {
+    display: block;
+
+    @media screen and ( min-width: $query__small ) {
+        display: flex;
+    }
+
+    .asbestos-section,
+    .lead-section,
+    .mold-section,
+    .soil-section,
+    .home-remodeling-section {
+        margin: 0 0 2em 0;
+        padding: 0 1em;
+        flex: 1.5;
+
+        @media screen and ( min-width: $query__small ) {
+            margin: 0 3em 1em 0;
+        }
+
+        h2 {
+            font-size: 1.1rem;
+            font-family: $font__serif;
+            color: $color__site-brown;
+
+            &:not(:first-child) {
+                margin-top: 2em;
+            }
+
+            @media screen and ( min-width: $query__small ) {
+                font-size: 1.25rem;
+            }
+        }
+
+        p {
+            font-size: 1.05rem;
+            padding: 0 .5em;
+
+            @media screen and ( min-width: $query__small ) {
+                font-size: 1.1rem;
+            }
+        }
+    }
+} 
+
+//ninja form
+.ninja-forms {
+    flex: 1;
+
+    h3 {
+        font-size: 1.25rem;
+        background: $color__site-brown;
+        color: #fff;
+        text-align: center;
+        width: 95%;
+        margin: .5em auto;
+
+        @media screen and ( min-width: $query__small ) {
+            font-size: 1.5rem;
+        }
+    }
+
+    p {
+        font-size: 1.25rem;
+        width: 80%;
+        margin: 0 auto;
+
+        i {
+            padding-right: .5em;
+        }
+
+        @media screen and ( min-width: $query__small ) {
+            font-size: 1.5rem;
+        }
+    }
+
+    //plugin
+    .nf-form-cont {
+
+        .first.one-half {
+            width: 100%;
+        }
+
+        .nf-field-container {
+            margin-bottom: 15px;
+            padding: 0 .5em;
+
+            @media screen and ( min-width: $query__small ) {
+                padding: 0;
+            }
+        }
+
+        .nf-field-label {
+            margin-bottom: 5px;
+        
+            label {
+                font-size: 1rem;
+
+                @media screen and ( min-width: $query__small ) {
+                    font-size: 1.1rem;
+                }
+            }
+        }
+
+        .nf-field-element textarea {
+            height: 80px;
+        }
+
+        .list-radio-wrap .nf-field-element li label {
+            font-size: 1.05rem;
+        }
+
+        .nf-before-form-content {
+            display: none;
+        }
+
+        .nf-field-element {
+
+            input {
+                background: #f4f6f6;
+
+                &[value="Submit"] {
+                    background: $color__site-brown;
+                    color: #fff;
+                    display: block;
+                    margin-left: auto;
+                    padding: 10px 20px;
+                    font-size: 1.1rem;
+                }
+            }
+        }
+    }
+}

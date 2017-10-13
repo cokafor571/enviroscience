@@ -1,0 +1,117 @@
+.header-image {
+  max-height: 100vh;
+  overflow: hidden;
+  position: relative;
+
+  @include dark-background;
+
+  img {
+    width: 100vw;
+    display: block;
+  }
+}
+
+//page header enviroscience info
+.page-header {
+  display: none;
+
+  @media screen and (min-width: $query__small) {
+    color: rgba(255, 255, 255, .7);
+    display: flex;
+    position: absolute;
+    top: 0;
+    width: 70%;
+    left: 15%;
+    font-size: 1rem;
+    z-index: 1;
+    border-bottom: 1px solid;
+
+    .header-location {
+      flex: 3;
+    }
+
+    .header-number,
+    .header-email {
+      flex: 1; 
+    }
+  }
+}
+
+.site-header {
+    position: absolute;
+    top: 110px;
+    z-index: 2;
+    color: #fff;
+    left: 10%;
+
+  @media screen and (min-width: $query__small) {
+    top: 200px;
+  }
+}
+
+.site-branding {
+  min-height: 65px;
+  display: flex;
+  max-width: 500px;
+  font-family: $font__serif;
+
+  .site-branding-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    .site-title {
+      margin: 0;
+      padding: 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      line-height: 1em;
+
+      @media screen and ( min-width: $query__small ) {
+        font-size: 2rem;
+      }
+
+      a {
+        color: white;
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .site-description {
+      margin: 0;
+      font-size: .8rem;
+      font-family: $font__sans;
+      font-weight: 400;
+      padding: 0 1em;
+
+      @media screen and ( min-width: $query__small ) {
+        font-size: 1.05rem;
+        padding: 1em;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $query__medium) {
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    top: 375px;
+  }
+
+  .site-branding {
+    width: 35%;
+    flex: 1 0 auto;
+  }
+}
+
+/*
+Header Menu
+ */
+@import "header-menu";
