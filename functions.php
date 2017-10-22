@@ -78,6 +78,10 @@ function starterpack_setup() {
         'flex-width' => true,
     ));
 
+    add_theme_support( 'wc-product-gallery-zoom' );
+    add_theme_support( 'wc-product-gallery-lightbox' );
+    add_theme_support( 'wc-product-gallery-slider' );
+
 }
 endif;
 
@@ -266,11 +270,33 @@ function starterpack_widgets_init() {
 add_action( 'widgets_init', 'starterpack_widgets_init' );
 
 /**
+ * Ensure cart contents update when products are added to the cart via AJAX
+ */
+function my_header_add_to_cart_fragment( $fragments ) {
+ 
+    ob_start();
+    $count = WC()->cart->cart_contents_count;
+    ?><a class="cart-contents" href="<?php echo WC()->cart->get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>"><?php
+    if ( $count > 0 ) {
+        ?>
+        <span class="cart-contents-count"><?php echo esc_html( $count ); ?></span>
+        <?php            
+    }
+        ?></a><?php
+ 
+    $fragments['a.cart-contents'] = ob_get_clean();
+     
+    return $fragments;
+}
+add_filter( 'woocommerce_add_to_cart_fragments', 'my_header_add_to_cart_fragment' );
+
+
+/**
  * Enqueue scripts and styles.
  */
 function starterpack_scripts() {
     // Enque google fonts: 
-    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Crimson+Text:400,700|Fira+Sans:400,700' );
+    wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css?family=Lato:400,700' );
 
 	wp_enqueue_style( 'starterpack-style', get_stylesheet_uri() );
 
@@ -342,6 +368,78 @@ require get_template_directory() . '/inc/customizer.php';
 require get_template_directory() . '/inc/jetpack.php';
 
 /**
+* Load WooCommerce compatibility file. 
+*/ 
+require get_template_directory() . '/inc/woocommerce.php';
+
+/**
  * Load SVG compatability
  */
 require get_template_directory() . '/inc/icon-functions.php';
+
+/* 
+** Woocommere Hooks and Filters
+*/
+function remove_wc_breadcrumbs() {
+    remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0 );
+}
+add_action( 'init', 'remove_wc_breadcrumbs' );
+
+/**
+ * custom_woocommerce_template_loop_add_to_cart
+*/
+function custom_woocommerce_product_add_to_cart_text() {
+	global $product;
+	
+	$product_type = $product->product_type;
+	
+	switch ( $product_type ) {
+		case 'external':
+			return __( 'Buy product', 'woocommerce' );
+		break;
+		case 'grouped':
+			return __( 'View products', 'woocommerce' );
+		break;
+		case 'simple':
+			return __( 'Add to cart', 'woocommerce' );
+		break;
+		case 'variable':
+			return __( 'Choose a size', 'woocommerce' );
+		break;
+		default:
+			return __( 'Shop', 'woocommerce' );
+	}
+	
+}
+add_filter( 'woocommerce_product_add_to_cart_text' , 'custom_woocommerce_product_add_to_cart_text' );
+
+/* Remove product meta */
+remove_action( 'woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40 );
+
+//+/- finctionality add to cart
+function kia_add_script_to_footer(){
+    if( ! is_admin() ) { ?>
+    <script>
+    jQuery(document).ready(function($){
+    $('.quantity').on('click', '.plus', function(e) {
+        $input = $(this).prev('input.qty');
+        var val = parseInt($input.val());
+        var step = $input.attr('step');
+        step = 'undefined' !== typeof(step) ? parseInt(step) : 1;
+        $input.val( val + step ).change();
+    });
+    $('.quantity').on('click', '.minus', 
+        function(e) {
+        $input = $(this).next('input.qty');
+        var val = parseInt($input.val());
+        var step = $input.attr('step');
+        step = 'undefined' !== typeof(step) ? parseInt(step) : 1;
+        if (val > 0) {
+            $input.val( val - step ).change();
+        } 
+    });
+});
+</script>
+<?php }
+}
+add_action( 'wp_footer', 'kia_add_script_to_footer' );

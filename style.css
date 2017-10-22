@@ -265,7 +265,7 @@ input,
 select,
 textarea {
 	color: #000;
-	font-family: "Crimson Text", Georgia, Cambria, Times, serif;
+	font-family: "Times New Roman", Georgia, Cambria, Times, serif;
 	font-size: 16.2px;
 	font-size: 1.08rem;
 	line-height: 1.5;
@@ -285,7 +285,7 @@ textarea {
 h1, h2, h3, h4, h5, h6 {
 	margin-top: .75em;
 	margin-bottom: .25em;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	clear: both;
 }
 
@@ -335,7 +335,7 @@ blockquote:before {
 	top: -.2em;
 	left: -.13em;
 	content: "“";
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	font-size: 12em;
 	line-height: 100%;
 	color: white;
@@ -595,7 +595,6 @@ a:hover, a:active {
 .entry-summary a,
 .comment-content a {
 	text-decoration: none;
-	border-bottom: 3px solid #b51c35;
 }
 
 .page-content a:focus, .page-content a:hover,
@@ -616,7 +615,7 @@ a:hover, a:active {
 .post-navigation,
 .paging-navigation {
 	padding: 2em 0;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	text-align: left;
 	overflow: hidden;
 }
@@ -715,7 +714,7 @@ a:hover, a:active {
 }
 
 .pagination {
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 }
 
 .pagination .nav-links {
@@ -841,11 +840,20 @@ a:hover, a:active {
 /*--------------------------------------------------------------
 ## Global layouts
 --------------------------------------------------------------*/
-.site-content {
-	margin: 0 auto;
+body {
+	background: #f5f5f5;
+	color: #777;
+	-webkit-font-smoothing: antialiased;
 }
 
-button:focus {
+body .site {
+	max-width: 1280px;
+	margin: 0 auto;
+	background: #fff;
+}
+
+button:focus,
+input:focus {
 	outline: none;
 }
 
@@ -903,6 +911,28 @@ button:focus {
 	}
 }
 
+@-webkit-keyframes translateFixedNav {
+	0% {
+		-webkit-transform: translateY(-100%);
+		        transform: translateY(-100%);
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		        transform: translateY(0);
+	}
+}
+
+@keyframes translateFixedNav {
+	0% {
+		-webkit-transform: translateY(-100%);
+		        transform: translateY(-100%);
+	}
+	100% {
+		-webkit-transform: translateY(0);
+		        transform: translateY(0);
+	}
+}
+
 /*--------------------------------------------------------------
 ## Header
 --------------------------------------------------------------*/
@@ -910,6 +940,9 @@ button:focus {
 	max-height: 100vh;
 	overflow: hidden;
 	position: relative;
+	-webkit-box-flex: 7;
+	    -ms-flex: 7;
+	        flex: 7;
 }
 
 .header-image:before {
@@ -919,7 +952,7 @@ button:focus {
 	top: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
+	background: rgba(0, 0, 0, 0.25);
 	display: block;
 	z-index: 1;
 }
@@ -929,48 +962,37 @@ button:focus {
 	display: block;
 }
 
-.page-header {
+.header-group {
+	position: relative;
+}
+
+.header-group .page-header {
 	display: none;
 }
 
 @media screen and (min-width: 600px) {
-	.page-header {
-		color: rgba(255, 255, 255, 0.7);
+	.header-group .page-header {
+		background: #959492;
+		color: rgba(255, 255, 255, 0.85);
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
-		position: absolute;
-		top: 0;
-		width: 70%;
-		left: 15%;
+		height: 40px;
+		width: 100%;
 		font-size: 1rem;
 		z-index: 1;
-		border-bottom: 1px solid;
+		-webkit-box-align: center;
+		    -ms-flex-align: center;
+		        align-items: center;
 	}
-	.page-header .header-location {
-		-webkit-box-flex: 3;
-		    -ms-flex: 3;
-		        flex: 3;
+	.header-group .page-header p {
+		margin: auto auto;
 	}
-	.page-header .header-number,
-	.page-header .header-email {
-		-webkit-box-flex: 1;
-		    -ms-flex: 1;
-		        flex: 1;
-	}
-}
-
-.site-header {
-	position: absolute;
-	top: 110px;
-	z-index: 2;
-	color: #fff;
-	left: 10%;
-}
-
-@media screen and (min-width: 600px) {
-	.site-header {
-		top: 200px;
+	.header-group .page-header i {
+		right: 50px;
+		position: relative;
+		cursor: pointer;
+		font-size: 1.1rem;
 	}
 }
 
@@ -980,7 +1002,7 @@ button:focus {
 	display: -ms-flexbox;
 	display: flex;
 	max-width: 500px;
-	font-family: "Crimson Text", Georgia, Cambria, Times, serif;
+	font-family: "Times New Roman", Georgia, Cambria, Times, serif;
 }
 
 .site-branding .site-branding-text {
@@ -994,6 +1016,9 @@ button:focus {
 	-webkit-box-pack: center;
 	    -ms-flex-pack: center;
 	        justify-content: center;
+	width: 100%;
+	text-align: center;
+	text-shadow: 1px 1px #444040;
 }
 
 .site-branding .site-branding-text .site-title {
@@ -1011,7 +1036,7 @@ button:focus {
 }
 
 .site-branding .site-branding-text .site-title a {
-	color: white;
+	color: rgba(255, 255, 255, 0.9);
 	text-decoration: none;
 }
 
@@ -1022,9 +1047,28 @@ button:focus {
 .site-branding .site-branding-text .site-description {
 	margin: 0;
 	font-size: .8rem;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	font-weight: 400;
 	padding: 0 1em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+}
+
+.site-branding .site-branding-text .site-description button {
+	width: 40%;
+	margin: 1em auto 0;
+	background: transparent;
+	border: 2px solid #fff;
+	letter-spacing: 1px;
+	padding: 10px;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-size: .8rem;
+	color: #fff;
 }
 
 @media screen and (min-width: 600px) {
@@ -1039,68 +1083,61 @@ button:focus {
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
-		-webkit-box-pack: justify;
-		    -ms-flex-pack: justify;
-		        justify-content: space-between;
-		-ms-flex-wrap: wrap;
-		    flex-wrap: wrap;
-		top: 375px;
 	}
 	.site-branding {
-		width: 35%;
-		-webkit-box-flex: 1;
-		    -ms-flex: 1 0 auto;
-		        flex: 1 0 auto;
+		background: #959492;
+		-webkit-box-flex: 3;
+		    -ms-flex: 3;
+		        flex: 3;
 	}
 }
 
 /*
 Header Menu
  */
+.main-navigation-wrapper {
+	height: 65px;
+}
+
 .main-navigation {
 	width: 100%;
+	background: #fff;
+	height: 65px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	position: absolute;
-	top: 0;
 	z-index: 2;
-	left: 0;
 	font-size: 1rem;
 }
 
 .main-navigation.fixed-nav {
 	position: fixed;
+	-webkit-animation: translateFixedNav .6s;
+	        animation: translateFixedNav .6s;
+	-webkit-transform: translateZ(0);
+	        transform: translateZ(0);
 	top: 0;
-	background: #24201F;
+	background: #fff;
+	box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(0, 0, 0, 0.08);
 	transition: background .25s linear;
 	z-index: 3;
-}
-
-.main-navigation.fixed-nav .custom-logo-link img {
-	height: 65px;
-	width: auto;
-}
-
-@media screen and (min-width: 600px) {
-	.main-navigation.fixed-nav .custom-logo-link img {
-		height: 90px;
-		width: auto;
-		-webkit-transform: scale(0.8);
-		        transform: scale(0.8);
-		transition: all .25s linear;
-	}
+	max-width: 1280px;
 }
 
 .main-navigation .custom-logo-link {
-	-webkit-transform: scale(0.8);
-	        transform: scale(0.8);
+	-webkit-box-flex: .5;
+	    -ms-flex: .5;
+	        flex: .5;
+}
+
+.main-navigation .custom-logo-link img {
+	height: 50px;
+	width: auto;
+	max-height: 100%;
 }
 
 @media screen and (min-width: 600px) {
 	.main-navigation .custom-logo-link {
-		-webkit-transform: scale(1);
-		        transform: scale(1);
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
@@ -1112,9 +1149,9 @@ Header Menu
 
 @media screen and (min-width: 600px) {
 	.main-navigation {
-		top: 8%;
-		z-index: 2;
-		font-size: 1.2rem;
+		top: 40px;
+		font-size: 1.05rem;
+		font-weight: bold;
 		-webkit-box-align: center;
 		    -ms-flex-align: center;
 		        align-items: center;
@@ -1122,12 +1159,9 @@ Header Menu
 }
 
 .main-navigation .menu-header-menu-container {
-	display: -webkit-box;
-	display: -ms-flexbox;
-	display: flex;
-	-webkit-box-flex: 1.5;
-	    -ms-flex: 1.5;
-	        flex: 1.5;
+	-webkit-box-flex: 2;
+	    -ms-flex: 2;
+	        flex: 2;
 }
 
 @media screen and (max-width: 600px) {
@@ -1177,10 +1211,7 @@ Header Menu
 
 .main-navigation a {
 	text-decoration: none;
-	color: #fff;
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
+	color: #42413D;
 }
 
 .main-navigation a:hover,
@@ -1189,7 +1220,7 @@ Header Menu
 }
 
 .dropdown-symbol {
-	color: #fff;
+	color: #42413D;
 }
 
 .menu-toggle {
@@ -1227,25 +1258,19 @@ Header Menu
 	.menu-toggle {
 		display: none;
 	}
-	.main-navigation .menu-item-has-children > a,
-	.main-navigation .page_item_has_children > a {
-		padding-right: .5em;
-	}
 	.main-navigation ul {
-		display: block;
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
-		-ms-flex-wrap: wrap;
-		    flex-wrap: wrap;
 	}
 	.main-navigation ul ul {
 		-webkit-box-orient: vertical;
 		-webkit-box-direction: normal;
 		    -ms-flex-direction: column;
 		        flex-direction: column;
-		background: rgba(36, 32, 31, 0.85);
+		background: white;
 		margin-left: 0;
+		top: 47px;
 	}
 	.main-navigation ul ul li {
 		padding-left: 0;
@@ -1256,144 +1281,934 @@ Header Menu
 		margin: 0;
 		padding: 0;
 	}
+	.main-navigation ul li {
+		margin: 0 1em;
+	}
 	.main-navigation ul li a {
-		padding: .4em 1em;
-		margin-left: 2em;
+		padding: .4em .5em;
+		cursor: pointer;
 	}
 }
 
 @media screen and (min-width: 900px) {
 	.main-navigation ul {
-		-webkit-box-pack: end;
-		    -ms-flex-pack: end;
-		        justify-content: flex-end;
 		padding-top: 0;
-	}
-}
-
-/*--------------------------------------------------------------
-## Pages
---------------------------------------------------------------*/
-.page-id-4 #breadcrumbs {
-	display: none;
-}
-
-.services {
-	width: 100%;
-	-ms-flex-pack: distribute;
-	    justify-content: space-around;
-	margin: 2em auto;
-	background: #dee3e6;
-	padding: 0 2em;
-}
-
-@media screen and (min-width: 900px) {
-	.services {
-		width: 70%;
-	}
-}
-
-.services .services-header {
-	display: block;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-}
-
-@media screen and (min-width: 900px) {
-	.services .services-header {
+		width: 100%;
 		display: -webkit-box;
 		display: -ms-flexbox;
 		display: flex;
+		-webkit-box-pack: center;
+		    -ms-flex-pack: center;
+		        justify-content: center;
 	}
 }
 
-.services .services-header .headline {
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
-	-webkit-box-flex: 4;
-	    -ms-flex: 4;
-	        flex: 4;
-	margin-right: 2em;
-	padding-right: 0;
-}
-
-@media screen and (min-width: 900px) {
-	.services .services-header .headline {
-		padding-right: 1em;
-	}
-}
-
-.services .services-header .headline h1 {
-	font-size: 1rem;
-}
-
-@media screen and (min-width: 600px) {
-	.services .services-header .headline h1 {
-		font-size: 1.1rem;
-	}
-}
-
-@media screen and (min-width: 900px) {
-	.services .services-header .headline h1 {
-		font-size: 1.4rem;
-	}
-}
-
-.services .services-header .headline p {
-	font-size: .95rem;
-}
-
-@media screen and (min-width: 900px) {
-	.services .services-header .headline p {
-		font-size: 1.15rem;
-	}
-}
-
-.services .services-header .quote-button {
+.woo-menu {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-pack: start;
+	    -ms-flex-pack: start;
+	        justify-content: flex-start;
 	-webkit-box-flex: 1;
 	    -ms-flex: 1;
 	        flex: 1;
 }
 
-.services .services-header .quote-button button {
-	background: #24201F;
-	color: #fff;
-	padding: .6em 1em .6em;
-	height: 40px;
-	width: 120px;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+.woo-menu form {
+	margin: auto auto;
+}
+
+.woo-menu form input {
 	font-size: 1rem;
+}
+
+.woo-menu form input[type="submit"] {
+	font-family: FontAwesome;
+	font-size: 1rem;
+	border: 0;
+	padding: 0 0 0 .25em;
+	background: none;
+}
+
+.woo-menu .cart-contents {
+	-webkit-transform: scale(0.9);
+	        transform: scale(0.9);
+}
+
+.woo-menu .cart-contents:before {
+	font-family: WooCommerce;
+	content: "\e01d";
+	font-size: 24px;
+	margin-top: 10px;
+	font-style: normal;
+	font-weight: 400;
+	padding-right: 5px;
+	vertical-align: bottom;
+}
+
+.woo-menu .cart-contents:hover {
+	text-decoration: none;
+}
+
+.woo-menu .cart-contents-count {
+	color: #fff;
+	background-color: #2ecc71;
+	font-weight: bold;
+	border-radius: 10px;
+	padding: 1px 6px;
+	line-height: 1;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	vertical-align: top;
+}
+
+.secondary-cart {
+	position: relative;
+	margin-right: 20px;
+}
+
+.secondary-cart .cart-dropdown {
+	position: absolute;
+}
+
+/*--------------------------------------------------------------
+## Pages
+--------------------------------------------------------------*/
+.gauges h1,
+.fake-gauges h1 {
+	text-align: center;
+	font-size: 1.75rem;
+}
+
+.gauges h1:after,
+.fake-gauges h1:after {
+	background: rgba(0, 0, 0, 0.5);
+	bottom: -5px;
+	content: "";
+	display: block;
+	height: 5.5px;
+	position: relative;
+	width: 90px;
+	margin: 0 auto;
+}
+
+.gauges .gauge-types,
+.gauges .fake-gauge-types,
+.fake-gauges .gauge-types,
+.fake-gauges .fake-gauge-types {
+	max-width: 1280px;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	position: relative;
+	margin: 0 auto;
+}
+
+.gauges .gauge-types .plugs-gauges,
+.gauges .gauge-types .spirals-tapers-gauges,
+.gauges .gauge-types .tunnels-gauges,
+.gauges .gauge-types .fake-spiral-tapers-gauges,
+.gauges .gauge-types .fake-hanging-woods-gauges,
+.gauges .gauge-types .fake-plug-gauges,
+.gauges .fake-gauge-types .plugs-gauges,
+.gauges .fake-gauge-types .spirals-tapers-gauges,
+.gauges .fake-gauge-types .tunnels-gauges,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges,
+.gauges .fake-gauge-types .fake-plug-gauges,
+.fake-gauges .gauge-types .plugs-gauges,
+.fake-gauges .gauge-types .spirals-tapers-gauges,
+.fake-gauges .gauge-types .tunnels-gauges,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges,
+.fake-gauges .gauge-types .fake-plug-gauges,
+.fake-gauges .fake-gauge-types .plugs-gauges,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges,
+.fake-gauges .fake-gauge-types .tunnels-gauges,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges,
+.fake-gauges .fake-gauge-types .fake-plug-gauges {
+	margin: 0 auto;
+}
+
+.gauges .gauge-types .plugs-gauges .plugs-img,
+.gauges .gauge-types .plugs-gauges .spirals-tapers-img,
+.gauges .gauge-types .plugs-gauges .tunnels-img,
+.gauges .gauge-types .plugs-gauges .fake-plugs-img,
+.gauges .gauge-types .plugs-gauges .fake-hanging-woods-img,
+.gauges .gauge-types .plugs-gauges .fake-plug-img,
+.gauges .gauge-types .spirals-tapers-gauges .plugs-img,
+.gauges .gauge-types .spirals-tapers-gauges .spirals-tapers-img,
+.gauges .gauge-types .spirals-tapers-gauges .tunnels-img,
+.gauges .gauge-types .spirals-tapers-gauges .fake-plugs-img,
+.gauges .gauge-types .spirals-tapers-gauges .fake-hanging-woods-img,
+.gauges .gauge-types .spirals-tapers-gauges .fake-plug-img,
+.gauges .gauge-types .tunnels-gauges .plugs-img,
+.gauges .gauge-types .tunnels-gauges .spirals-tapers-img,
+.gauges .gauge-types .tunnels-gauges .tunnels-img,
+.gauges .gauge-types .tunnels-gauges .fake-plugs-img,
+.gauges .gauge-types .tunnels-gauges .fake-hanging-woods-img,
+.gauges .gauge-types .tunnels-gauges .fake-plug-img,
+.gauges .gauge-types .fake-spiral-tapers-gauges .plugs-img,
+.gauges .gauge-types .fake-spiral-tapers-gauges .spirals-tapers-img,
+.gauges .gauge-types .fake-spiral-tapers-gauges .tunnels-img,
+.gauges .gauge-types .fake-spiral-tapers-gauges .fake-plugs-img,
+.gauges .gauge-types .fake-spiral-tapers-gauges .fake-hanging-woods-img,
+.gauges .gauge-types .fake-spiral-tapers-gauges .fake-plug-img,
+.gauges .gauge-types .fake-hanging-woods-gauges .plugs-img,
+.gauges .gauge-types .fake-hanging-woods-gauges .spirals-tapers-img,
+.gauges .gauge-types .fake-hanging-woods-gauges .tunnels-img,
+.gauges .gauge-types .fake-hanging-woods-gauges .fake-plugs-img,
+.gauges .gauge-types .fake-hanging-woods-gauges .fake-hanging-woods-img,
+.gauges .gauge-types .fake-hanging-woods-gauges .fake-plug-img,
+.gauges .gauge-types .fake-plug-gauges .plugs-img,
+.gauges .gauge-types .fake-plug-gauges .spirals-tapers-img,
+.gauges .gauge-types .fake-plug-gauges .tunnels-img,
+.gauges .gauge-types .fake-plug-gauges .fake-plugs-img,
+.gauges .gauge-types .fake-plug-gauges .fake-hanging-woods-img,
+.gauges .gauge-types .fake-plug-gauges .fake-plug-img,
+.gauges .fake-gauge-types .plugs-gauges .plugs-img,
+.gauges .fake-gauge-types .plugs-gauges .spirals-tapers-img,
+.gauges .fake-gauge-types .plugs-gauges .tunnels-img,
+.gauges .fake-gauge-types .plugs-gauges .fake-plugs-img,
+.gauges .fake-gauge-types .plugs-gauges .fake-hanging-woods-img,
+.gauges .fake-gauge-types .plugs-gauges .fake-plug-img,
+.gauges .fake-gauge-types .spirals-tapers-gauges .plugs-img,
+.gauges .fake-gauge-types .spirals-tapers-gauges .spirals-tapers-img,
+.gauges .fake-gauge-types .spirals-tapers-gauges .tunnels-img,
+.gauges .fake-gauge-types .spirals-tapers-gauges .fake-plugs-img,
+.gauges .fake-gauge-types .spirals-tapers-gauges .fake-hanging-woods-img,
+.gauges .fake-gauge-types .spirals-tapers-gauges .fake-plug-img,
+.gauges .fake-gauge-types .tunnels-gauges .plugs-img,
+.gauges .fake-gauge-types .tunnels-gauges .spirals-tapers-img,
+.gauges .fake-gauge-types .tunnels-gauges .tunnels-img,
+.gauges .fake-gauge-types .tunnels-gauges .fake-plugs-img,
+.gauges .fake-gauge-types .tunnels-gauges .fake-hanging-woods-img,
+.gauges .fake-gauge-types .tunnels-gauges .fake-plug-img,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .plugs-img,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .spirals-tapers-img,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .tunnels-img,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-plugs-img,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-hanging-woods-img,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-plug-img,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .plugs-img,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .spirals-tapers-img,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .tunnels-img,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-plugs-img,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-hanging-woods-img,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-plug-img,
+.gauges .fake-gauge-types .fake-plug-gauges .plugs-img,
+.gauges .fake-gauge-types .fake-plug-gauges .spirals-tapers-img,
+.gauges .fake-gauge-types .fake-plug-gauges .tunnels-img,
+.gauges .fake-gauge-types .fake-plug-gauges .fake-plugs-img,
+.gauges .fake-gauge-types .fake-plug-gauges .fake-hanging-woods-img,
+.gauges .fake-gauge-types .fake-plug-gauges .fake-plug-img,
+.fake-gauges .gauge-types .plugs-gauges .plugs-img,
+.fake-gauges .gauge-types .plugs-gauges .spirals-tapers-img,
+.fake-gauges .gauge-types .plugs-gauges .tunnels-img,
+.fake-gauges .gauge-types .plugs-gauges .fake-plugs-img,
+.fake-gauges .gauge-types .plugs-gauges .fake-hanging-woods-img,
+.fake-gauges .gauge-types .plugs-gauges .fake-plug-img,
+.fake-gauges .gauge-types .spirals-tapers-gauges .plugs-img,
+.fake-gauges .gauge-types .spirals-tapers-gauges .spirals-tapers-img,
+.fake-gauges .gauge-types .spirals-tapers-gauges .tunnels-img,
+.fake-gauges .gauge-types .spirals-tapers-gauges .fake-plugs-img,
+.fake-gauges .gauge-types .spirals-tapers-gauges .fake-hanging-woods-img,
+.fake-gauges .gauge-types .spirals-tapers-gauges .fake-plug-img,
+.fake-gauges .gauge-types .tunnels-gauges .plugs-img,
+.fake-gauges .gauge-types .tunnels-gauges .spirals-tapers-img,
+.fake-gauges .gauge-types .tunnels-gauges .tunnels-img,
+.fake-gauges .gauge-types .tunnels-gauges .fake-plugs-img,
+.fake-gauges .gauge-types .tunnels-gauges .fake-hanging-woods-img,
+.fake-gauges .gauge-types .tunnels-gauges .fake-plug-img,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .plugs-img,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .spirals-tapers-img,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .tunnels-img,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .fake-plugs-img,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .fake-hanging-woods-img,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .fake-plug-img,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .plugs-img,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .spirals-tapers-img,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .tunnels-img,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .fake-plugs-img,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .fake-hanging-woods-img,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .fake-plug-img,
+.fake-gauges .gauge-types .fake-plug-gauges .plugs-img,
+.fake-gauges .gauge-types .fake-plug-gauges .spirals-tapers-img,
+.fake-gauges .gauge-types .fake-plug-gauges .tunnels-img,
+.fake-gauges .gauge-types .fake-plug-gauges .fake-plugs-img,
+.fake-gauges .gauge-types .fake-plug-gauges .fake-hanging-woods-img,
+.fake-gauges .gauge-types .fake-plug-gauges .fake-plug-img,
+.fake-gauges .fake-gauge-types .plugs-gauges .plugs-img,
+.fake-gauges .fake-gauge-types .plugs-gauges .spirals-tapers-img,
+.fake-gauges .fake-gauge-types .plugs-gauges .tunnels-img,
+.fake-gauges .fake-gauge-types .plugs-gauges .fake-plugs-img,
+.fake-gauges .fake-gauge-types .plugs-gauges .fake-hanging-woods-img,
+.fake-gauges .fake-gauge-types .plugs-gauges .fake-plug-img,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .plugs-img,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .spirals-tapers-img,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .tunnels-img,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .fake-plugs-img,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .fake-hanging-woods-img,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .fake-plug-img,
+.fake-gauges .fake-gauge-types .tunnels-gauges .plugs-img,
+.fake-gauges .fake-gauge-types .tunnels-gauges .spirals-tapers-img,
+.fake-gauges .fake-gauge-types .tunnels-gauges .tunnels-img,
+.fake-gauges .fake-gauge-types .tunnels-gauges .fake-plugs-img,
+.fake-gauges .fake-gauge-types .tunnels-gauges .fake-hanging-woods-img,
+.fake-gauges .fake-gauge-types .tunnels-gauges .fake-plug-img,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .plugs-img,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .spirals-tapers-img,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .tunnels-img,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-plugs-img,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-hanging-woods-img,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-plug-img,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .plugs-img,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .spirals-tapers-img,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .tunnels-img,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-plugs-img,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-hanging-woods-img,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-plug-img,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .plugs-img,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .spirals-tapers-img,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .tunnels-img,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .fake-plugs-img,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .fake-hanging-woods-img,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .fake-plug-img {
+	position: relative;
+	z-index: 0;
+}
+
+.gauges .gauge-types .plugs-gauges .plugs-img:before,
+.gauges .gauge-types .plugs-gauges .spirals-tapers-img:before,
+.gauges .gauge-types .plugs-gauges .tunnels-img:before,
+.gauges .gauge-types .plugs-gauges .fake-plugs-img:before,
+.gauges .gauge-types .plugs-gauges .fake-hanging-woods-img:before,
+.gauges .gauge-types .plugs-gauges .fake-plug-img:before,
+.gauges .gauge-types .spirals-tapers-gauges .plugs-img:before,
+.gauges .gauge-types .spirals-tapers-gauges .spirals-tapers-img:before,
+.gauges .gauge-types .spirals-tapers-gauges .tunnels-img:before,
+.gauges .gauge-types .spirals-tapers-gauges .fake-plugs-img:before,
+.gauges .gauge-types .spirals-tapers-gauges .fake-hanging-woods-img:before,
+.gauges .gauge-types .spirals-tapers-gauges .fake-plug-img:before,
+.gauges .gauge-types .tunnels-gauges .plugs-img:before,
+.gauges .gauge-types .tunnels-gauges .spirals-tapers-img:before,
+.gauges .gauge-types .tunnels-gauges .tunnels-img:before,
+.gauges .gauge-types .tunnels-gauges .fake-plugs-img:before,
+.gauges .gauge-types .tunnels-gauges .fake-hanging-woods-img:before,
+.gauges .gauge-types .tunnels-gauges .fake-plug-img:before,
+.gauges .gauge-types .fake-spiral-tapers-gauges .plugs-img:before,
+.gauges .gauge-types .fake-spiral-tapers-gauges .spirals-tapers-img:before,
+.gauges .gauge-types .fake-spiral-tapers-gauges .tunnels-img:before,
+.gauges .gauge-types .fake-spiral-tapers-gauges .fake-plugs-img:before,
+.gauges .gauge-types .fake-spiral-tapers-gauges .fake-hanging-woods-img:before,
+.gauges .gauge-types .fake-spiral-tapers-gauges .fake-plug-img:before,
+.gauges .gauge-types .fake-hanging-woods-gauges .plugs-img:before,
+.gauges .gauge-types .fake-hanging-woods-gauges .spirals-tapers-img:before,
+.gauges .gauge-types .fake-hanging-woods-gauges .tunnels-img:before,
+.gauges .gauge-types .fake-hanging-woods-gauges .fake-plugs-img:before,
+.gauges .gauge-types .fake-hanging-woods-gauges .fake-hanging-woods-img:before,
+.gauges .gauge-types .fake-hanging-woods-gauges .fake-plug-img:before,
+.gauges .gauge-types .fake-plug-gauges .plugs-img:before,
+.gauges .gauge-types .fake-plug-gauges .spirals-tapers-img:before,
+.gauges .gauge-types .fake-plug-gauges .tunnels-img:before,
+.gauges .gauge-types .fake-plug-gauges .fake-plugs-img:before,
+.gauges .gauge-types .fake-plug-gauges .fake-hanging-woods-img:before,
+.gauges .gauge-types .fake-plug-gauges .fake-plug-img:before,
+.gauges .fake-gauge-types .plugs-gauges .plugs-img:before,
+.gauges .fake-gauge-types .plugs-gauges .spirals-tapers-img:before,
+.gauges .fake-gauge-types .plugs-gauges .tunnels-img:before,
+.gauges .fake-gauge-types .plugs-gauges .fake-plugs-img:before,
+.gauges .fake-gauge-types .plugs-gauges .fake-hanging-woods-img:before,
+.gauges .fake-gauge-types .plugs-gauges .fake-plug-img:before,
+.gauges .fake-gauge-types .spirals-tapers-gauges .plugs-img:before,
+.gauges .fake-gauge-types .spirals-tapers-gauges .spirals-tapers-img:before,
+.gauges .fake-gauge-types .spirals-tapers-gauges .tunnels-img:before,
+.gauges .fake-gauge-types .spirals-tapers-gauges .fake-plugs-img:before,
+.gauges .fake-gauge-types .spirals-tapers-gauges .fake-hanging-woods-img:before,
+.gauges .fake-gauge-types .spirals-tapers-gauges .fake-plug-img:before,
+.gauges .fake-gauge-types .tunnels-gauges .plugs-img:before,
+.gauges .fake-gauge-types .tunnels-gauges .spirals-tapers-img:before,
+.gauges .fake-gauge-types .tunnels-gauges .tunnels-img:before,
+.gauges .fake-gauge-types .tunnels-gauges .fake-plugs-img:before,
+.gauges .fake-gauge-types .tunnels-gauges .fake-hanging-woods-img:before,
+.gauges .fake-gauge-types .tunnels-gauges .fake-plug-img:before,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .plugs-img:before,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .spirals-tapers-img:before,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .tunnels-img:before,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-plugs-img:before,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-hanging-woods-img:before,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-plug-img:before,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .plugs-img:before,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .spirals-tapers-img:before,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .tunnels-img:before,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-plugs-img:before,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-hanging-woods-img:before,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-plug-img:before,
+.gauges .fake-gauge-types .fake-plug-gauges .plugs-img:before,
+.gauges .fake-gauge-types .fake-plug-gauges .spirals-tapers-img:before,
+.gauges .fake-gauge-types .fake-plug-gauges .tunnels-img:before,
+.gauges .fake-gauge-types .fake-plug-gauges .fake-plugs-img:before,
+.gauges .fake-gauge-types .fake-plug-gauges .fake-hanging-woods-img:before,
+.gauges .fake-gauge-types .fake-plug-gauges .fake-plug-img:before,
+.fake-gauges .gauge-types .plugs-gauges .plugs-img:before,
+.fake-gauges .gauge-types .plugs-gauges .spirals-tapers-img:before,
+.fake-gauges .gauge-types .plugs-gauges .tunnels-img:before,
+.fake-gauges .gauge-types .plugs-gauges .fake-plugs-img:before,
+.fake-gauges .gauge-types .plugs-gauges .fake-hanging-woods-img:before,
+.fake-gauges .gauge-types .plugs-gauges .fake-plug-img:before,
+.fake-gauges .gauge-types .spirals-tapers-gauges .plugs-img:before,
+.fake-gauges .gauge-types .spirals-tapers-gauges .spirals-tapers-img:before,
+.fake-gauges .gauge-types .spirals-tapers-gauges .tunnels-img:before,
+.fake-gauges .gauge-types .spirals-tapers-gauges .fake-plugs-img:before,
+.fake-gauges .gauge-types .spirals-tapers-gauges .fake-hanging-woods-img:before,
+.fake-gauges .gauge-types .spirals-tapers-gauges .fake-plug-img:before,
+.fake-gauges .gauge-types .tunnels-gauges .plugs-img:before,
+.fake-gauges .gauge-types .tunnels-gauges .spirals-tapers-img:before,
+.fake-gauges .gauge-types .tunnels-gauges .tunnels-img:before,
+.fake-gauges .gauge-types .tunnels-gauges .fake-plugs-img:before,
+.fake-gauges .gauge-types .tunnels-gauges .fake-hanging-woods-img:before,
+.fake-gauges .gauge-types .tunnels-gauges .fake-plug-img:before,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .plugs-img:before,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .spirals-tapers-img:before,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .tunnels-img:before,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .fake-plugs-img:before,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .fake-hanging-woods-img:before,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges .fake-plug-img:before,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .plugs-img:before,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .spirals-tapers-img:before,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .tunnels-img:before,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .fake-plugs-img:before,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .fake-hanging-woods-img:before,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges .fake-plug-img:before,
+.fake-gauges .gauge-types .fake-plug-gauges .plugs-img:before,
+.fake-gauges .gauge-types .fake-plug-gauges .spirals-tapers-img:before,
+.fake-gauges .gauge-types .fake-plug-gauges .tunnels-img:before,
+.fake-gauges .gauge-types .fake-plug-gauges .fake-plugs-img:before,
+.fake-gauges .gauge-types .fake-plug-gauges .fake-hanging-woods-img:before,
+.fake-gauges .gauge-types .fake-plug-gauges .fake-plug-img:before,
+.fake-gauges .fake-gauge-types .plugs-gauges .plugs-img:before,
+.fake-gauges .fake-gauge-types .plugs-gauges .spirals-tapers-img:before,
+.fake-gauges .fake-gauge-types .plugs-gauges .tunnels-img:before,
+.fake-gauges .fake-gauge-types .plugs-gauges .fake-plugs-img:before,
+.fake-gauges .fake-gauge-types .plugs-gauges .fake-hanging-woods-img:before,
+.fake-gauges .fake-gauge-types .plugs-gauges .fake-plug-img:before,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .plugs-img:before,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .spirals-tapers-img:before,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .tunnels-img:before,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .fake-plugs-img:before,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .fake-hanging-woods-img:before,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges .fake-plug-img:before,
+.fake-gauges .fake-gauge-types .tunnels-gauges .plugs-img:before,
+.fake-gauges .fake-gauge-types .tunnels-gauges .spirals-tapers-img:before,
+.fake-gauges .fake-gauge-types .tunnels-gauges .tunnels-img:before,
+.fake-gauges .fake-gauge-types .tunnels-gauges .fake-plugs-img:before,
+.fake-gauges .fake-gauge-types .tunnels-gauges .fake-hanging-woods-img:before,
+.fake-gauges .fake-gauge-types .tunnels-gauges .fake-plug-img:before,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .plugs-img:before,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .spirals-tapers-img:before,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .tunnels-img:before,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-plugs-img:before,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-hanging-woods-img:before,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges .fake-plug-img:before,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .plugs-img:before,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .spirals-tapers-img:before,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .tunnels-img:before,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-plugs-img:before,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-hanging-woods-img:before,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges .fake-plug-img:before,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .plugs-img:before,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .spirals-tapers-img:before,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .tunnels-img:before,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .fake-plugs-img:before,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .fake-hanging-woods-img:before,
+.fake-gauges .fake-gauge-types .fake-plug-gauges .fake-plug-img:before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.25);
+	display: block;
+	z-index: 1;
+}
+
+.gauges .gauge-types .plugs-gauges img,
+.gauges .gauge-types .spirals-tapers-gauges img,
+.gauges .gauge-types .tunnels-gauges img,
+.gauges .gauge-types .fake-spiral-tapers-gauges img,
+.gauges .gauge-types .fake-hanging-woods-gauges img,
+.gauges .gauge-types .fake-plug-gauges img,
+.gauges .fake-gauge-types .plugs-gauges img,
+.gauges .fake-gauge-types .spirals-tapers-gauges img,
+.gauges .fake-gauge-types .tunnels-gauges img,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges img,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges img,
+.gauges .fake-gauge-types .fake-plug-gauges img,
+.fake-gauges .gauge-types .plugs-gauges img,
+.fake-gauges .gauge-types .spirals-tapers-gauges img,
+.fake-gauges .gauge-types .tunnels-gauges img,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges img,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges img,
+.fake-gauges .gauge-types .fake-plug-gauges img,
+.fake-gauges .fake-gauge-types .plugs-gauges img,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges img,
+.fake-gauges .fake-gauge-types .tunnels-gauges img,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges img,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges img,
+.fake-gauges .fake-gauge-types .fake-plug-gauges img {
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.gauges .gauge-types .plugs-gauges button,
+.gauges .gauge-types .spirals-tapers-gauges button,
+.gauges .gauge-types .tunnels-gauges button,
+.gauges .gauge-types .fake-spiral-tapers-gauges button,
+.gauges .gauge-types .fake-hanging-woods-gauges button,
+.gauges .gauge-types .fake-plug-gauges button,
+.gauges .fake-gauge-types .plugs-gauges button,
+.gauges .fake-gauge-types .spirals-tapers-gauges button,
+.gauges .fake-gauge-types .tunnels-gauges button,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges button,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges button,
+.gauges .fake-gauge-types .fake-plug-gauges button,
+.fake-gauges .gauge-types .plugs-gauges button,
+.fake-gauges .gauge-types .spirals-tapers-gauges button,
+.fake-gauges .gauge-types .tunnels-gauges button,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges button,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges button,
+.fake-gauges .gauge-types .fake-plug-gauges button,
+.fake-gauges .fake-gauge-types .plugs-gauges button,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges button,
+.fake-gauges .fake-gauge-types .tunnels-gauges button,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges button,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges button,
+.fake-gauges .fake-gauge-types .fake-plug-gauges button {
+	color: #fff;
+	padding: 5px 10px;
+	border: 2px solid #fff;
+	background: transparent;
+	position: relative;
+	z-index: 2;
+	top: -70px;
 	display: block;
 	margin: 0 auto;
 }
 
-.services .services-header .quote-button button:hover {
-	border-color: #24201F;
-	background: transparent;
-	color: #24201F;
+.gauges .gauge-types .plugs-gauges button h2,
+.gauges .gauge-types .spirals-tapers-gauges button h2,
+.gauges .gauge-types .tunnels-gauges button h2,
+.gauges .gauge-types .fake-spiral-tapers-gauges button h2,
+.gauges .gauge-types .fake-hanging-woods-gauges button h2,
+.gauges .gauge-types .fake-plug-gauges button h2,
+.gauges .fake-gauge-types .plugs-gauges button h2,
+.gauges .fake-gauge-types .spirals-tapers-gauges button h2,
+.gauges .fake-gauge-types .tunnels-gauges button h2,
+.gauges .fake-gauge-types .fake-spiral-tapers-gauges button h2,
+.gauges .fake-gauge-types .fake-hanging-woods-gauges button h2,
+.gauges .fake-gauge-types .fake-plug-gauges button h2,
+.fake-gauges .gauge-types .plugs-gauges button h2,
+.fake-gauges .gauge-types .spirals-tapers-gauges button h2,
+.fake-gauges .gauge-types .tunnels-gauges button h2,
+.fake-gauges .gauge-types .fake-spiral-tapers-gauges button h2,
+.fake-gauges .gauge-types .fake-hanging-woods-gauges button h2,
+.fake-gauges .gauge-types .fake-plug-gauges button h2,
+.fake-gauges .fake-gauge-types .plugs-gauges button h2,
+.fake-gauges .fake-gauge-types .spirals-tapers-gauges button h2,
+.fake-gauges .fake-gauge-types .tunnels-gauges button h2,
+.fake-gauges .fake-gauge-types .fake-spiral-tapers-gauges button h2,
+.fake-gauges .fake-gauge-types .fake-hanging-woods-gauges button h2,
+.fake-gauges .fake-gauge-types .fake-plug-gauges button h2 {
+	font-size: 1rem;
+	font-weight: bold;
 }
 
-.service-cards {
-	max-width: 1450px;
+.divider {
+	width: 1255px;
+	max-width: 100%;
+	border-bottom: 5px double #ccc;
+	height: 2.5em;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.divider .free-bag,
+.divider .piercing-care {
+	display: inline-block;
+	background: #eee;
+	padding: 0 5%;
+}
+
+.divider .free-bag .flex-bag,
+.divider .piercing-care .flex-bag {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
-	-ms-flex-wrap: wrap;
-	    flex-wrap: wrap;
-	-webkit-box-pack: space-evenly;
-	    -ms-flex-pack: space-evenly;
-	        justify-content: space-evenly;
-	margin: 3em auto 0;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+
+.divider .free-bag .flex-bag h2,
+.divider .piercing-care .flex-bag h2 {
+	font-size: 1.25rem;
+}
+
+.divider .free-bag .flex-bag img,
+.divider .piercing-care .flex-bag img {
+	max-width: 100%;
+	height: auto;
+}
+
+.accessories-block {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	max-width: 1280px;
+	margin: 0 auto;
+}
+
+.accessories-block img {
+	display: block;
+	margin: 0 auto;
+}
+
+.accessories-block .accessories {
+	margin: 0 auto;
+}
+
+.accessories-block .accessories h2 {
+	font-size: 1.25rem;
+}
+
+.accessories-block .accessories h2:after {
+	background: rgba(0, 0, 0, 0.5);
+	bottom: -5px;
+	content: "";
+	display: block;
+	height: 5.5px;
+	position: relative;
+	width: 90px;
+	margin: 0 auto;
+}
+
+.accessories-block .accessories h2:after {
+	margin: 0;
+}
+
+.accessories-block .accessories p {
+	font-size: 1.25rem;
+}
+
+/*--------------------------------------------------------------
+## Woocommerce Pages
+--------------------------------------------------------------*/
+.entry-content > .cart-checkout-header {
+	text-align: center;
+	font-size: 2rem;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	color: rgba(0, 0, 0, 0.65);
+	margin-bottom: 2em;
+}
+
+.entry-content > .cart-checkout-header .active {
+	opacity: .5;
+}
+
+.entry-content > .cart-checkout-header .active:hover {
+	opacity: 1;
+}
+
+.entry-content > .cart-checkout-header i {
+	padding: 0 .25em;
+	color: rgba(0, 0, 0, 0.5);
+}
+
+.woocommerce {
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+.woocommerce .woocommerce-info {
+	border: none;
+	margin-bottom: 0;
+	font-size: 1rem;
+	background: none;
+}
+
+.woocommerce .woocommerce-info + .checkout_coupon {
+	border: none;
+	margin: 0;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+}
+
+.woocommerce .woocommerce-breadcrumb {
+	background-color: #f5f5f5;
+	padding: 1em .5em;
+	font-size: .9rem;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	border-top: 1px solid #d2d2d2;
+	border-bottom: 1px solid #d2d2d2;
+}
+
+.woocommerce .woocommerce-products-header {
+	padding: 0 .5em;
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	    -ms-flex-pack: justify;
+	        justify-content: space-between;
+	margin-bottom: 2em;
+}
+
+.woocommerce .woocommerce-products-header h1 {
+	font-size: 2.5rem;
+	text-transform: uppercase;
+}
+
+.woocommerce .woocommerce-products-header .woocommerce-result-count {
+	font-size: 1rem;
+}
+
+.woocommerce .woocommerce-products-header .woocommerce-ordering select {
+	padding: .5em;
+	background: #e1e1e1;
+}
+
+.woocommerce .woocommerce-products-header .woocommerce-ordering select option {
+	background: #fff;
+}
+
+.woocommerce #container {
+	-ms-flex-preferred-size: 75%;
+	    flex-basis: 75%;
+	padding: 0 1em;
+}
+
+.woocommerce .widget-area {
+	-ms-flex-preferred-size: 25%;
+	    flex-basis: 25%;
+	padding: 0 1em;
+}
+
+.woocommerce .widget-area#secondary {
+	width: 25%;
+}
+
+.woocommerce .widget-area section {
+	padding: 0;
+}
+
+.woocommerce .widget-area section h2 {
+	background: #42413D;
+	color: #fff;
+	border-radius: 2px;
+	padding: .5em;
+	font-size: 1rem;
+	margin-bottom: 1em;
+}
+
+.woocommerce .widget-area section .dropdown_product_cat,
+.woocommerce .widget-area section .select2-selection__rendered {
+	border: none;
+	border-bottom: 2px solid #e1e1e1;
+}
+
+.woocommerce img,
+.woocommerce-page img {
+	border-bottom: 1px solid #e2e2e2;
+	padding: .5em;
+}
+
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product {
+	border: 2px solid transparent;
+	box-shadow: 0 2px 6px 1px rgba(0, 0, 0, 0.1);
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-category__title,
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce-page ul.products li.product .woocommerce-loop-category__title,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__title {
+	padding: .5em;
+	font-size: 1rem;
+}
+
+.woocommerce ul.products li.product .button,
+.woocommerce-page ul.products li.product .button {
+	margin: 1em auto;
+	font-size: 1rem;
+	display: block;
+	width: 75%;
+	text-align: center;
+}
+
+.woocommerce ul.products li.product .amount,
+.woocommerce-page ul.products li.product .amount {
+	padding: .5em;
+	font-size: 1rem;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__link img,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__link img {
+	transition: all .2s linear;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-product__link:hover img,
+.woocommerce-page ul.products li.product .woocommerce-loop-product__link:hover img {
+	border-bottom: 1px solid #b51c35;
+}
+
+.woocommerce div.product div.images .woocommerce-product-gallery__trigger,
+.woocommerce-page div.product div.images .woocommerce-product-gallery__trigger {
+	z-index: 2;
+}
+
+.woocommerce span.onsale,
+.woocommerce-page span.onsale {
+	z-index: 2;
+}
+
+.single-product {
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+}
+
+.single-product .product_title {
+	font-size: 1.5rem;
+}
+
+.single-product div.product p.price {
+	font-size: 1.05em;
+}
+
+.single-product #content div.product div.images {
+	width: 35%;
+	margin-right: 1em;
+}
+
+.single-product #content div.product div.summary {
+	float: none;
+	width: 80%;
+}
+
+.single-product .woocommerce-product-details__short-description {
+	font-size: 1rem;
+}
+
+.single-product .woocommerce-product-details__short-description li {
+	margin-bottom: .25em;
+}
+
+.single-product .entry-summary {
+	padding: 1em 2em 0;
+	margin-top: 0;
+}
+
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--description,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--reviews {
+	font-size: 1rem;
+}
+
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--description h2,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--description h3,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--description h4,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--description h5,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--reviews h2,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--reviews h3,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--reviews h4,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--reviews h5 {
+	margin-top: 0;
+	font-size: 1.5rem;
+}
+
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--description strong,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--description p,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--reviews strong,
+.single-product .wc-tabs-wrapper .woocommerce-Tabs-panel--reviews p {
+	font-weight: normal;
+	font-size: 1rem;
+}
+
+.single-product .related h2,
+.single-product .upsells h2 {
+	font-size: 1.5rem;
+}
+
+.woocommerce-cart .woocommerce {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 0 1em;
+}
+
+.woocommerce-cart .woocommerce .woocommerce-cart-form {
+	-ms-flex-preferred-size: 60%;
+	    flex-basis: 60%;
+	margin-right: 1em;
+}
+
+.woocommerce-cart .woocommerce .woocommerce-cart-form .shop_table {
+	border: none;
+	font-size: 1rem;
+}
+
+.woocommerce-cart .woocommerce .woocommerce-cart-form .shop_table thead {
+	text-transform: uppercase;
+}
+
+.woocommerce-cart .woocommerce .woocommerce-cart-form .shop_table img {
+	width: 90px;
+}
+
+.woocommerce-cart .woocommerce .cart-collaterals {
+	-ms-flex-preferred-size: 40%;
+	    flex-basis: 40%;
+}
+
+.woocommerce-cart .woocommerce .cart-collaterals .cart_totals {
+	float: none;
+	width: 100%;
+}
+
+.woocommerce-cart .woocommerce .cart-collaterals .cart_totals h2 {
+	margin-bottom: 1em;
+	font-size: 1rem;
+	text-transform: uppercase;
+	word-spacing: .25em;
+}
+
+.woocommerce-cart .woocommerce .cart-collaterals .cart_totals .shop_table {
+	border: none;
+	font-size: .95rem;
+}
+
+.woocommerce-cart .woocommerce .cart-collaterals .cart_totals .shop_table td {
+	text-align: right;
+}
+
+.checkout {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+	padding: 0 2em;
 	-webkit-box-align: start;
 	    -ms-flex-align: start;
 	        align-items: flex-start;
 }
 
-.service-cards .asbestos-card,
-.service-cards .lead-card,
-.service-cards .mold-card,
-.service-cards .soil-card,
-.service-cards .home-improvement-card {
+.checkout .col2-set {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
@@ -1401,925 +2216,63 @@ Header Menu
 	-webkit-box-direction: normal;
 	    -ms-flex-direction: column;
 	        flex-direction: column;
-	margin-bottom: 3em;
-	background: #4c7235;
-	border-radius: 4px;
-}
-
-.service-cards .asbestos-card img,
-.service-cards .lead-card img,
-.service-cards .mold-card img,
-.service-cards .soil-card img,
-.service-cards .home-improvement-card img {
-	max-width: 100%;
-	width: 300px;
-	height: auto;
-	position: relative;
-	right: 0;
-}
-
-@media screen and (min-width: 600px) {
-	.service-cards .asbestos-card img,
-	.service-cards .lead-card img,
-	.service-cards .mold-card img,
-	.service-cards .soil-card img,
-	.service-cards .home-improvement-card img {
-		width: 375px;
-		right: 60px;
-		bottom: 25px;
-	}
-}
-
-.service-cards .asbestos-card .asbestos-text,
-.service-cards .asbestos-card .lead-text,
-.service-cards .asbestos-card .mold-text,
-.service-cards .asbestos-card .soil-text,
-.service-cards .asbestos-card .home-improvement-text,
-.service-cards .lead-card .asbestos-text,
-.service-cards .lead-card .lead-text,
-.service-cards .lead-card .mold-text,
-.service-cards .lead-card .soil-text,
-.service-cards .lead-card .home-improvement-text,
-.service-cards .mold-card .asbestos-text,
-.service-cards .mold-card .lead-text,
-.service-cards .mold-card .mold-text,
-.service-cards .mold-card .soil-text,
-.service-cards .mold-card .home-improvement-text,
-.service-cards .soil-card .asbestos-text,
-.service-cards .soil-card .lead-text,
-.service-cards .soil-card .mold-text,
-.service-cards .soil-card .soil-text,
-.service-cards .soil-card .home-improvement-text,
-.service-cards .home-improvement-card .asbestos-text,
-.service-cards .home-improvement-card .lead-text,
-.service-cards .home-improvement-card .mold-text,
-.service-cards .home-improvement-card .soil-text,
-.service-cards .home-improvement-card .home-improvement-text {
-	color: #fff;
-	width: 300px;
-	padding-bottom: 1em;
-}
-
-@media screen and (min-width: 600px) {
-	.service-cards .asbestos-card .asbestos-text,
-	.service-cards .asbestos-card .lead-text,
-	.service-cards .asbestos-card .mold-text,
-	.service-cards .asbestos-card .soil-text,
-	.service-cards .asbestos-card .home-improvement-text,
-	.service-cards .lead-card .asbestos-text,
-	.service-cards .lead-card .lead-text,
-	.service-cards .lead-card .mold-text,
-	.service-cards .lead-card .soil-text,
-	.service-cards .lead-card .home-improvement-text,
-	.service-cards .mold-card .asbestos-text,
-	.service-cards .mold-card .lead-text,
-	.service-cards .mold-card .mold-text,
-	.service-cards .mold-card .soil-text,
-	.service-cards .mold-card .home-improvement-text,
-	.service-cards .soil-card .asbestos-text,
-	.service-cards .soil-card .lead-text,
-	.service-cards .soil-card .mold-text,
-	.service-cards .soil-card .soil-text,
-	.service-cards .soil-card .home-improvement-text,
-	.service-cards .home-improvement-card .asbestos-text,
-	.service-cards .home-improvement-card .lead-text,
-	.service-cards .home-improvement-card .mold-text,
-	.service-cards .home-improvement-card .soil-text,
-	.service-cards .home-improvement-card .home-improvement-text {
-		width: 375px;
-	}
-}
-
-.service-cards .asbestos-card .asbestos-text h2,
-.service-cards .asbestos-card .lead-text h2,
-.service-cards .asbestos-card .mold-text h2,
-.service-cards .asbestos-card .soil-text h2,
-.service-cards .asbestos-card .home-improvement-text h2,
-.service-cards .lead-card .asbestos-text h2,
-.service-cards .lead-card .lead-text h2,
-.service-cards .lead-card .mold-text h2,
-.service-cards .lead-card .soil-text h2,
-.service-cards .lead-card .home-improvement-text h2,
-.service-cards .mold-card .asbestos-text h2,
-.service-cards .mold-card .lead-text h2,
-.service-cards .mold-card .mold-text h2,
-.service-cards .mold-card .soil-text h2,
-.service-cards .mold-card .home-improvement-text h2,
-.service-cards .soil-card .asbestos-text h2,
-.service-cards .soil-card .lead-text h2,
-.service-cards .soil-card .mold-text h2,
-.service-cards .soil-card .soil-text h2,
-.service-cards .soil-card .home-improvement-text h2,
-.service-cards .home-improvement-card .asbestos-text h2,
-.service-cards .home-improvement-card .lead-text h2,
-.service-cards .home-improvement-card .mold-text h2,
-.service-cards .home-improvement-card .soil-text h2,
-.service-cards .home-improvement-card .home-improvement-text h2 {
-	font-size: 1.1rem;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
-	text-align: center;
-	text-decoration: underline;
-}
-
-@media screen and (min-width: 600px) {
-	.service-cards .asbestos-card .asbestos-text h2,
-	.service-cards .asbestos-card .lead-text h2,
-	.service-cards .asbestos-card .mold-text h2,
-	.service-cards .asbestos-card .soil-text h2,
-	.service-cards .asbestos-card .home-improvement-text h2,
-	.service-cards .lead-card .asbestos-text h2,
-	.service-cards .lead-card .lead-text h2,
-	.service-cards .lead-card .mold-text h2,
-	.service-cards .lead-card .soil-text h2,
-	.service-cards .lead-card .home-improvement-text h2,
-	.service-cards .mold-card .asbestos-text h2,
-	.service-cards .mold-card .lead-text h2,
-	.service-cards .mold-card .mold-text h2,
-	.service-cards .mold-card .soil-text h2,
-	.service-cards .mold-card .home-improvement-text h2,
-	.service-cards .soil-card .asbestos-text h2,
-	.service-cards .soil-card .lead-text h2,
-	.service-cards .soil-card .mold-text h2,
-	.service-cards .soil-card .soil-text h2,
-	.service-cards .soil-card .home-improvement-text h2,
-	.service-cards .home-improvement-card .asbestos-text h2,
-	.service-cards .home-improvement-card .lead-text h2,
-	.service-cards .home-improvement-card .mold-text h2,
-	.service-cards .home-improvement-card .soil-text h2,
-	.service-cards .home-improvement-card .home-improvement-text h2 {
-		font-size: 1.2rem;
-	}
-}
-
-.service-cards .asbestos-card .asbestos-text p,
-.service-cards .asbestos-card .lead-text p,
-.service-cards .asbestos-card .mold-text p,
-.service-cards .asbestos-card .soil-text p,
-.service-cards .asbestos-card .home-improvement-text p,
-.service-cards .lead-card .asbestos-text p,
-.service-cards .lead-card .lead-text p,
-.service-cards .lead-card .mold-text p,
-.service-cards .lead-card .soil-text p,
-.service-cards .lead-card .home-improvement-text p,
-.service-cards .mold-card .asbestos-text p,
-.service-cards .mold-card .lead-text p,
-.service-cards .mold-card .mold-text p,
-.service-cards .mold-card .soil-text p,
-.service-cards .mold-card .home-improvement-text p,
-.service-cards .soil-card .asbestos-text p,
-.service-cards .soil-card .lead-text p,
-.service-cards .soil-card .mold-text p,
-.service-cards .soil-card .soil-text p,
-.service-cards .soil-card .home-improvement-text p,
-.service-cards .home-improvement-card .asbestos-text p,
-.service-cards .home-improvement-card .lead-text p,
-.service-cards .home-improvement-card .mold-text p,
-.service-cards .home-improvement-card .soil-text p,
-.service-cards .home-improvement-card .home-improvement-text p {
-	padding: .5em 1em;
-	font-size: 1.05rem;
-	color: rgba(255, 255, 255, 0.8);
-}
-
-@media screen and (min-width: 600px) {
-	.service-cards .asbestos-card .asbestos-text p,
-	.service-cards .asbestos-card .lead-text p,
-	.service-cards .asbestos-card .mold-text p,
-	.service-cards .asbestos-card .soil-text p,
-	.service-cards .asbestos-card .home-improvement-text p,
-	.service-cards .lead-card .asbestos-text p,
-	.service-cards .lead-card .lead-text p,
-	.service-cards .lead-card .mold-text p,
-	.service-cards .lead-card .soil-text p,
-	.service-cards .lead-card .home-improvement-text p,
-	.service-cards .mold-card .asbestos-text p,
-	.service-cards .mold-card .lead-text p,
-	.service-cards .mold-card .mold-text p,
-	.service-cards .mold-card .soil-text p,
-	.service-cards .mold-card .home-improvement-text p,
-	.service-cards .soil-card .asbestos-text p,
-	.service-cards .soil-card .lead-text p,
-	.service-cards .soil-card .mold-text p,
-	.service-cards .soil-card .soil-text p,
-	.service-cards .soil-card .home-improvement-text p,
-	.service-cards .home-improvement-card .asbestos-text p,
-	.service-cards .home-improvement-card .lead-text p,
-	.service-cards .home-improvement-card .mold-text p,
-	.service-cards .home-improvement-card .soil-text p,
-	.service-cards .home-improvement-card .home-improvement-text p {
-		font-size: 1rem;
-	}
-}
-
-.service-cards .asbestos-card .asbestos-text button,
-.service-cards .asbestos-card .lead-text button,
-.service-cards .asbestos-card .mold-text button,
-.service-cards .asbestos-card .soil-text button,
-.service-cards .asbestos-card .home-improvement-text button,
-.service-cards .lead-card .asbestos-text button,
-.service-cards .lead-card .lead-text button,
-.service-cards .lead-card .mold-text button,
-.service-cards .lead-card .soil-text button,
-.service-cards .lead-card .home-improvement-text button,
-.service-cards .mold-card .asbestos-text button,
-.service-cards .mold-card .lead-text button,
-.service-cards .mold-card .mold-text button,
-.service-cards .mold-card .soil-text button,
-.service-cards .mold-card .home-improvement-text button,
-.service-cards .soil-card .asbestos-text button,
-.service-cards .soil-card .lead-text button,
-.service-cards .soil-card .mold-text button,
-.service-cards .soil-card .soil-text button,
-.service-cards .soil-card .home-improvement-text button,
-.service-cards .home-improvement-card .asbestos-text button,
-.service-cards .home-improvement-card .lead-text button,
-.service-cards .home-improvement-card .mold-text button,
-.service-cards .home-improvement-card .soil-text button,
-.service-cards .home-improvement-card .home-improvement-text button {
-	margin: 0 auto;
-	display: block;
-	border-radius: 30px;
-	background: transparent;
-	color: #fff;
-	border-color: #fff;
-	border-width: 3px;
-}
-
-.service-cards .asbestos-card .asbestos-text button:hover,
-.service-cards .asbestos-card .lead-text button:hover,
-.service-cards .asbestos-card .mold-text button:hover,
-.service-cards .asbestos-card .soil-text button:hover,
-.service-cards .asbestos-card .home-improvement-text button:hover,
-.service-cards .lead-card .asbestos-text button:hover,
-.service-cards .lead-card .lead-text button:hover,
-.service-cards .lead-card .mold-text button:hover,
-.service-cards .lead-card .soil-text button:hover,
-.service-cards .lead-card .home-improvement-text button:hover,
-.service-cards .mold-card .asbestos-text button:hover,
-.service-cards .mold-card .lead-text button:hover,
-.service-cards .mold-card .mold-text button:hover,
-.service-cards .mold-card .soil-text button:hover,
-.service-cards .mold-card .home-improvement-text button:hover,
-.service-cards .soil-card .asbestos-text button:hover,
-.service-cards .soil-card .lead-text button:hover,
-.service-cards .soil-card .mold-text button:hover,
-.service-cards .soil-card .soil-text button:hover,
-.service-cards .soil-card .home-improvement-text button:hover,
-.service-cards .home-improvement-card .asbestos-text button:hover,
-.service-cards .home-improvement-card .lead-text button:hover,
-.service-cards .home-improvement-card .mold-text button:hover,
-.service-cards .home-improvement-card .soil-text button:hover,
-.service-cards .home-improvement-card .home-improvement-text button:hover {
-	background: #fff;
-	color: #4c7235;
-}
-
-.about {
-	display: block;
-	-webkit-box-align: center;
-	    -ms-flex-align: center;
-	        align-items: center;
-}
-
-@media screen and (min-width: 1400px) {
-	.about {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-	}
-}
-
-.about img {
-	display: block;
-	margin: 0 auto;
-}
-
-.about .about-text {
-	padding: 0 2em;
-}
-
-.about .about-text h1 {
-	font-size: 1.5rem;
-	font-family: "Crimson Text", Georgia, Cambria, Times, serif;
-}
-
-@media screen and (min-width: 600px) {
-	.about .about-text h1 {
-		font-size: 2rem;
-	}
-}
-
-.about .about-text p {
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
-	font-size: .95rem;
-}
-
-@media screen and (min-width: 600px) {
-	.about .about-text p {
-		font-size: 1rem;
-	}
-}
-
-.contact-now {
-	background: url("http://enviro.dev/wp-content/uploads/2017/10/enviro-full.jpg") no-repeat center center;
-	background-size: cover;
-	max-height: 500px;
-	height: 400px;
-	overflow: hidden;
-	background-attachment: fixed;
-	position: relative;
-	z-index: 0;
-}
-
-.contact-now:before {
-	content: '';
-	position: absolute;
-	left: -400px;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.5);
-	display: block;
-	z-index: 1;
-	-webkit-transform: skew(-26.25deg);
-	        transform: skew(-26.25deg);
-}
-
-@media screen and (min-width: 1025px) {
-	.contact-now:before {
-		left: -700px;
-	}
-}
-
-.contact-now .contact-now-text {
-	background: #dee3e6;
-	box-shadow: 0 0 100px 10px rgba(0, 0, 0, 0.5);
-	margin: auto;
-	width: 80%;
-	z-index: 1;
-	position: relative;
-	top: 25%;
-	padding: 1em;
-}
-
-@media screen and (min-width: 465px) {
-	.contact-now .contact-now-text {
-		padding: 2em;
-	}
-}
-
-@media screen and (min-width: 900px) {
-	.contact-now .contact-now-text {
-		width: 60%;
-	}
-}
-
-.contact-now .contact-now-text h1 {
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	font-size: 1rem;
-	text-align: center;
+	color: rgba(0, 0, 0, 0.8);
 }
 
-@media screen and (min-width: 465px) {
-	.contact-now .contact-now-text h1 {
-		font-size: 1.25rem;
-	}
-}
-
-@media screen and (min-width: 900px) {
-	.contact-now .contact-now-text h1 {
-		font-size: 1.5rem;
-	}
-}
-
-.contact-now .contact-now-text .contact-info {
-	display: block;
-	-ms-flex-pack: distribute;
-	    justify-content: space-around;
-}
-
-@media screen and (min-width: 775px) {
-	.contact-now .contact-now-text .contact-info {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-	}
-}
-
-.contact-now .contact-now-text .contact-info p {
-	font-size: .95rem;
-	margin-right: .5em;
-}
-
-@media screen and (min-width: 900px) {
-	.contact-now .contact-now-text .contact-info p {
-		font-size: 1.15rem;
-	}
-}
-
-.contact-now .contact-now-text .contact-info p i {
-	border-radius: 50%;
-	border: 2px solid #edf2f9;
-	color: #3a4d6a;
-	margin-right: .5em;
-	padding: .5em;
-}
-
-.page-id-72 .header-image,
-.page-id-70 .header-image,
-.page-id-68 .header-image,
-.page-id-66 .header-image,
-.page-id-64 .header-image {
-	max-height: 60vh;
-}
-
-@media screen and (min-width: 900px) {
-	.page-id-72 .site-header,
-	.page-id-70 .site-header,
-	.page-id-68 .site-header,
-	.page-id-66 .site-header,
-	.page-id-64 .site-header {
-		top: 300px;
-	}
-}
-
-.page-id-72 .site-content,
-.page-id-70 .site-content,
-.page-id-68 .site-content,
-.page-id-66 .site-content,
-.page-id-64 .site-content {
-	max-width: 1080px;
-}
-
-.asbestos,
-.lead,
-.mold,
-.soil,
-.home-remodeling {
-	display: block;
-}
-
-@media screen and (min-width: 600px) {
-	.asbestos,
-	.lead,
-	.mold,
-	.soil,
-	.home-remodeling {
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: flex;
-	}
-}
-
-.asbestos .asbestos-section,
-.asbestos .lead-section,
-.asbestos .mold-section,
-.asbestos .soil-section,
-.asbestos .home-remodeling-section,
-.lead .asbestos-section,
-.lead .lead-section,
-.lead .mold-section,
-.lead .soil-section,
-.lead .home-remodeling-section,
-.mold .asbestos-section,
-.mold .lead-section,
-.mold .mold-section,
-.mold .soil-section,
-.mold .home-remodeling-section,
-.soil .asbestos-section,
-.soil .lead-section,
-.soil .mold-section,
-.soil .soil-section,
-.soil .home-remodeling-section,
-.home-remodeling .asbestos-section,
-.home-remodeling .lead-section,
-.home-remodeling .mold-section,
-.home-remodeling .soil-section,
-.home-remodeling .home-remodeling-section {
-	margin: 0 0 2em 0;
-	padding: 0 1em;
-	-webkit-box-flex: 1.5;
-	    -ms-flex: 1.5;
-	        flex: 1.5;
-}
-
-@media screen and (min-width: 600px) {
-	.asbestos .asbestos-section,
-	.asbestos .lead-section,
-	.asbestos .mold-section,
-	.asbestos .soil-section,
-	.asbestos .home-remodeling-section,
-	.lead .asbestos-section,
-	.lead .lead-section,
-	.lead .mold-section,
-	.lead .soil-section,
-	.lead .home-remodeling-section,
-	.mold .asbestos-section,
-	.mold .lead-section,
-	.mold .mold-section,
-	.mold .soil-section,
-	.mold .home-remodeling-section,
-	.soil .asbestos-section,
-	.soil .lead-section,
-	.soil .mold-section,
-	.soil .soil-section,
-	.soil .home-remodeling-section,
-	.home-remodeling .asbestos-section,
-	.home-remodeling .lead-section,
-	.home-remodeling .mold-section,
-	.home-remodeling .soil-section,
-	.home-remodeling .home-remodeling-section {
-		margin: 0 3em 1em 0;
-	}
-}
-
-.asbestos .asbestos-section h2,
-.asbestos .lead-section h2,
-.asbestos .mold-section h2,
-.asbestos .soil-section h2,
-.asbestos .home-remodeling-section h2,
-.lead .asbestos-section h2,
-.lead .lead-section h2,
-.lead .mold-section h2,
-.lead .soil-section h2,
-.lead .home-remodeling-section h2,
-.mold .asbestos-section h2,
-.mold .lead-section h2,
-.mold .mold-section h2,
-.mold .soil-section h2,
-.mold .home-remodeling-section h2,
-.soil .asbestos-section h2,
-.soil .lead-section h2,
-.soil .mold-section h2,
-.soil .soil-section h2,
-.soil .home-remodeling-section h2,
-.home-remodeling .asbestos-section h2,
-.home-remodeling .lead-section h2,
-.home-remodeling .mold-section h2,
-.home-remodeling .soil-section h2,
-.home-remodeling .home-remodeling-section h2 {
-	font-size: 1.1rem;
-	font-family: "Crimson Text", Georgia, Cambria, Times, serif;
-	color: #713725;
-}
-
-.asbestos .asbestos-section h2:not(:first-child),
-.asbestos .lead-section h2:not(:first-child),
-.asbestos .mold-section h2:not(:first-child),
-.asbestos .soil-section h2:not(:first-child),
-.asbestos .home-remodeling-section h2:not(:first-child),
-.lead .asbestos-section h2:not(:first-child),
-.lead .lead-section h2:not(:first-child),
-.lead .mold-section h2:not(:first-child),
-.lead .soil-section h2:not(:first-child),
-.lead .home-remodeling-section h2:not(:first-child),
-.mold .asbestos-section h2:not(:first-child),
-.mold .lead-section h2:not(:first-child),
-.mold .mold-section h2:not(:first-child),
-.mold .soil-section h2:not(:first-child),
-.mold .home-remodeling-section h2:not(:first-child),
-.soil .asbestos-section h2:not(:first-child),
-.soil .lead-section h2:not(:first-child),
-.soil .mold-section h2:not(:first-child),
-.soil .soil-section h2:not(:first-child),
-.soil .home-remodeling-section h2:not(:first-child),
-.home-remodeling .asbestos-section h2:not(:first-child),
-.home-remodeling .lead-section h2:not(:first-child),
-.home-remodeling .mold-section h2:not(:first-child),
-.home-remodeling .soil-section h2:not(:first-child),
-.home-remodeling .home-remodeling-section h2:not(:first-child) {
-	margin-top: 2em;
-}
-
-@media screen and (min-width: 600px) {
-	.asbestos .asbestos-section h2,
-	.asbestos .lead-section h2,
-	.asbestos .mold-section h2,
-	.asbestos .soil-section h2,
-	.asbestos .home-remodeling-section h2,
-	.lead .asbestos-section h2,
-	.lead .lead-section h2,
-	.lead .mold-section h2,
-	.lead .soil-section h2,
-	.lead .home-remodeling-section h2,
-	.mold .asbestos-section h2,
-	.mold .lead-section h2,
-	.mold .mold-section h2,
-	.mold .soil-section h2,
-	.mold .home-remodeling-section h2,
-	.soil .asbestos-section h2,
-	.soil .lead-section h2,
-	.soil .mold-section h2,
-	.soil .soil-section h2,
-	.soil .home-remodeling-section h2,
-	.home-remodeling .asbestos-section h2,
-	.home-remodeling .lead-section h2,
-	.home-remodeling .mold-section h2,
-	.home-remodeling .soil-section h2,
-	.home-remodeling .home-remodeling-section h2 {
-		font-size: 1.25rem;
-	}
-}
-
-.asbestos .asbestos-section p,
-.asbestos .lead-section p,
-.asbestos .mold-section p,
-.asbestos .soil-section p,
-.asbestos .home-remodeling-section p,
-.lead .asbestos-section p,
-.lead .lead-section p,
-.lead .mold-section p,
-.lead .soil-section p,
-.lead .home-remodeling-section p,
-.mold .asbestos-section p,
-.mold .lead-section p,
-.mold .mold-section p,
-.mold .soil-section p,
-.mold .home-remodeling-section p,
-.soil .asbestos-section p,
-.soil .lead-section p,
-.soil .mold-section p,
-.soil .soil-section p,
-.soil .home-remodeling-section p,
-.home-remodeling .asbestos-section p,
-.home-remodeling .lead-section p,
-.home-remodeling .mold-section p,
-.home-remodeling .soil-section p,
-.home-remodeling .home-remodeling-section p {
-	font-size: 1.05rem;
-	padding: 0 .5em;
-}
-
-@media screen and (min-width: 600px) {
-	.asbestos .asbestos-section p,
-	.asbestos .lead-section p,
-	.asbestos .mold-section p,
-	.asbestos .soil-section p,
-	.asbestos .home-remodeling-section p,
-	.lead .asbestos-section p,
-	.lead .lead-section p,
-	.lead .mold-section p,
-	.lead .soil-section p,
-	.lead .home-remodeling-section p,
-	.mold .asbestos-section p,
-	.mold .lead-section p,
-	.mold .mold-section p,
-	.mold .soil-section p,
-	.mold .home-remodeling-section p,
-	.soil .asbestos-section p,
-	.soil .lead-section p,
-	.soil .mold-section p,
-	.soil .soil-section p,
-	.soil .home-remodeling-section p,
-	.home-remodeling .asbestos-section p,
-	.home-remodeling .lead-section p,
-	.home-remodeling .mold-section p,
-	.home-remodeling .soil-section p,
-	.home-remodeling .home-remodeling-section p {
-		font-size: 1.1rem;
-	}
-}
-
-.ninja-forms {
-	-webkit-box-flex: 1;
-	    -ms-flex: 1;
-	        flex: 1;
-}
-
-.ninja-forms h3 {
-	font-size: 1.25rem;
-	background: #713725;
-	color: #fff;
-	text-align: center;
-	width: 95%;
-	margin: .5em auto;
-}
-
-@media screen and (min-width: 600px) {
-	.ninja-forms h3 {
-		font-size: 1.5rem;
-	}
-}
-
-.ninja-forms p {
-	font-size: 1.25rem;
-	width: 80%;
-	margin: 0 auto;
-}
-
-.ninja-forms p i {
-	padding-right: .5em;
-}
-
-@media screen and (min-width: 600px) {
-	.ninja-forms p {
-		font-size: 1.5rem;
-	}
-}
-
-.ninja-forms .nf-form-cont .first.one-half {
-	width: 100%;
-}
-
-.ninja-forms .nf-form-cont .nf-field-container {
-	margin-bottom: 15px;
-	padding: 0 .5em;
-}
-
-@media screen and (min-width: 600px) {
-	.ninja-forms .nf-form-cont .nf-field-container {
-		padding: 0;
-	}
-}
-
-.ninja-forms .nf-form-cont .nf-field-label {
-	margin-bottom: 5px;
-}
-
-.ninja-forms .nf-form-cont .nf-field-label label {
-	font-size: 1rem;
-}
-
-@media screen and (min-width: 600px) {
-	.ninja-forms .nf-form-cont .nf-field-label label {
-		font-size: 1.1rem;
-	}
-}
-
-.ninja-forms .nf-form-cont .nf-field-element textarea {
-	height: 80px;
-}
-
-.ninja-forms .nf-form-cont .list-radio-wrap .nf-field-element li label {
-	font-size: 1.05rem;
-}
-
-.ninja-forms .nf-form-cont .nf-before-form-content {
-	display: none;
-}
-
-.ninja-forms .nf-form-cont .nf-field-element input {
-	background: #f4f6f6;
-}
-
-.ninja-forms .nf-form-cont .nf-field-element input[value="Submit"] {
-	background: #713725;
-	color: #fff;
-	display: block;
-	margin-left: auto;
-	padding: 10px 20px;
-	font-size: 1.1rem;
-}
-
-.page-id-15 #breadcrumbs {
-	margin-left: 0;
-}
-
-@media screen and (min-width: 600px) {
-	.page-id-15 #breadcrumbs {
-		margin-left: 7.5%;
-	}
-}
-
-.contact-wrapper .contact-now {
-	height: 300px;
-	max-height: 300px;
-	background: none;
-}
-
-.contact-wrapper .contact-now:before {
-	background: none;
-}
-
-.contact-wrapper .contact-now .contact-now-text {
-	box-shadow: none;
-	width: 100%;
-	top: 5%;
-}
-
-@media screen and (min-width: 397px) {
-	.contact-wrapper .contact-now .contact-now-text {
-		width: 80%;
-	}
-}
-
-@media screen and (min-width: 775px) {
-	.contact-wrapper .contact-now .contact-now-text {
-		top: 25%;
-	}
-}
-
-.contact-wrapper .map-form {
-	position: relative;
-}
-
-.contact-wrapper .map-form #wpgmza_map {
-	display: none !important;
-	position: absolute;
+.checkout .col2-set .col-1 {
 	float: none;
-}
-
-@media screen and (min-width: 600px) {
-	.contact-wrapper .map-form #wpgmza_map {
-		display: block !important;
-	}
-}
-
-.contact-wrapper .map-form .nf-form-cont {
-	width: 300px;
-	margin: 0 auto;
-	border: 1px solid transparent;
-	position: relative;
-	background: #1bbde8;
-	padding: 50px 30px;
-}
-
-@media screen and (min-width: 600px) {
-	.contact-wrapper .map-form .nf-form-cont {
-		width: 400px;
-		left: 10%;
-	}
-}
-
-@media screen and (min-width: 850px) {
-	.contact-wrapper .map-form .nf-form-cont {
-		width: 500px;
-		left: 20%;
-	}
-}
-
-.contact-wrapper .map-form .nf-form-cont h3 {
-	font-size: 1.25rem;
-	color: #fff;
-	text-align: center;
-	margin-bottom: 2em;
-}
-
-.contact-wrapper .map-form .nf-form-cont .first.one-half {
 	width: 100%;
 }
 
-.contact-wrapper .map-form .nf-form-cont .nf-field {
-	border-bottom: 1px solid #eee;
+.checkout .col2-set .col-1 .woocommerce-billing-fields h3 {
+	margin: 0;
+	font-size: 1.25rem;
+	text-transform: uppercase;
 }
 
-.contact-wrapper .map-form .nf-form-cont .submit-container .nf-field {
+.checkout .col2-set .col-1 .woocommerce-billing-fields input {
+	border: 1px solid #ddd;
+	padding: 0 .75em;
+	font-size: .97em;
+	height: 2.507em;
+	vertical-align: middle;
+	box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+	margin-bottom: 1em;
+	transition: all .3s linear;
+}
+
+.checkout .col2-set .col-1 .woocommerce-billing-fields input:hover {
+	box-shadow: inset 0 -1.8em 1em 0 transparent;
+}
+
+.checkout .woocommerce-checkout-review-order {
+	margin-left: 2em;
+	border: 2px solid #446084;
+	padding: 15px 30px 30px;
+	font-size: 1rem;
+	color: rgba(0, 0, 0, 0.8);
+}
+
+.checkout .woocommerce-checkout-review-order h3 {
+	margin: 0 0 1em;
+	font-size: 1.25rem;
+	text-transform: uppercase;
+}
+
+.checkout .woocommerce-checkout-review-order .woocommerce-checkout-review-order-table {
 	border: none;
 }
 
-.contact-wrapper .map-form .nf-form-cont .field-wrap:focus,
-.contact-wrapper .map-form .nf-form-cont .nf-element:focus {
-	outline: none;
-}
-
-.contact-wrapper .map-form .nf-form-cont .nf-field-container {
-	margin-bottom: 15px;
-}
-
-.contact-wrapper .map-form .nf-form-cont .nf-field-label {
-	margin-bottom: 5px;
+.woocommerce .cart-checkout-header {
 	display: none;
-}
-
-.contact-wrapper .map-form .nf-form-cont .nf-field-label label {
-	font-size: 1.1rem;
-}
-
-.contact-wrapper .map-form .nf-form-cont .nf-field-element textarea {
-	height: 80px;
-}
-
-.contact-wrapper .map-form .nf-form-cont .list-radio-wrap .nf-field-element li label {
-	font-size: 1.05rem;
-}
-
-.contact-wrapper .map-form .nf-form-cont .nf-before-form-content {
-	display: none;
-}
-
-.contact-wrapper .map-form .nf-form-cont .nf-field-element input,
-.contact-wrapper .map-form .nf-form-cont .nf-field-element textarea {
-	border: none;
-	background: #1bbde8;
-	font-size: 1.1rem;
-	color: #fff;
-}
-
-.contact-wrapper .map-form .nf-form-cont .nf-field-element input[value="Submit Quote Request"],
-.contact-wrapper .map-form .nf-form-cont .nf-field-element textarea[value="Submit Quote Request"] {
-	background: #fff;
-	color: #1bbde8;
-	display: block;
-	margin: 2em auto 0;
-	padding: 10px 20px;
-	font-size: 1.1rem;
 }
 
 /*--------------------------------------------------------------
 ## Archives
 --------------------------------------------------------------*/
 .archive-view {
-	background-color: #eee;
+	background-color: #f5f5f5;
 }
 
 .archive-view .post,
@@ -2340,8 +2293,10 @@ Header Menu
 		-webkit-box-pack: justify;
 		    -ms-flex-pack: justify;
 		        justify-content: space-between;
-		-ms-flex-wrap: wrap;
-		    flex-wrap: wrap;
+		-webkit-box-orient: horizontal;
+		-webkit-box-direction: reverse;
+		    -ms-flex-direction: row-reverse;
+		        flex-direction: row-reverse;
 	}
 	.archive-view.has-sidebar .page-header {
 		width: 100%;
@@ -2361,7 +2316,7 @@ Header Menu
 }
 
 .page-header {
-	font-familly: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 }
 
 .page-title {
@@ -2376,7 +2331,7 @@ Header Menu
 .error-404 .page-content {
 	margin-bottom: 2em;
 	padding: 1em 2em;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	color: white;
 	background: #b51c35;
 }
@@ -2426,7 +2381,7 @@ Header Menu
 	position: absolute;
 	right: 0;
 	bottom: 0;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 }
 
 .continue-reading a {
@@ -2454,7 +2409,7 @@ Header Menu
 }
 
 .entry-header {
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 }
 
 .cat-links {
@@ -2495,7 +2450,7 @@ Header Menu
 
 .entry-meta,
 .entry-footer {
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	font-size: 90%;
 }
 
@@ -2628,7 +2583,7 @@ Header Menu
 
 .entry-footer {
 	margin: 1.5em 0;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -2665,7 +2620,7 @@ Header Menu
 .comment-meta {
 	position: relative;
 	margin-left: 70px;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	font-size: 80%;
 }
 
@@ -2770,7 +2725,7 @@ Header Menu
 .reply a {
 	display: inline-block;
 	padding: .5em 1.4em;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	font-size: 85%;
 	color: #000;
 	line-height: 1.3em;
@@ -2809,7 +2764,7 @@ Header Menu
 }
 
 .comment-form {
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	line-height: 1.3em;
 }
 
@@ -2853,9 +2808,9 @@ Header Menu
 .site-footer {
 	position: relative;
 	padding: 1em;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	color: #fff;
-	background-color: #24201F;
+	background-color: #42413D;
 	text-align: center;
 }
 
@@ -2904,7 +2859,7 @@ Header Menu
 .widget {
 	margin: 0 0 2em;
 	padding: 0 0 2em;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	/* Make sure select elements fit in widgets. */
 }
 
@@ -2949,7 +2904,7 @@ Header Menu
 	width: 100%;
 	height: 2.5em;
 	padding: 10px;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	border: 1px solid #ccc;
 }
 
@@ -3036,7 +2991,7 @@ Header Menu
 
 .rssSummary {
 	padding: .5em 0;
-	font-family: "Crimson Text", Georgia, Cambria, Times, serif;
+	font-family: "Times New Roman", Georgia, Cambria, Times, serif;
 	font-size: .8em;
 	line-height: 1.4em;
 }
@@ -3224,7 +3179,7 @@ object {
 .wp-caption {
 	margin-bottom: 2em;
 	max-width: 100%;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	font-size: 90%;
 	color: #666666;
 	text-align: center;
@@ -3330,7 +3285,7 @@ object {
 .gallery-caption {
 	display: block;
 	margin: 0;
-	font-family: "Fira Sans", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-family: "Lato", "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
 	border: none;
 }
 

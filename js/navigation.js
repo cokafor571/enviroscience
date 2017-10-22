@@ -11,7 +11,7 @@
     function initMainNavigation( container ) {
 
         // Add dropdown toggle that displays child menu items.
-        var dropdownToggle = $( '<span />', { 'class': 'dropdown-symbol', text: '▼' , 'aria-expanded': false })
+        var dropdownToggle = $( '<span />', { 'class': 'dropdown-symbol', html: '<i class="fa fa-angle-down" aria-hidden="true"></i>' , 'aria-expanded': false })
             .append( $( '<span />', { 'class': 'screen-reader-text', text: starterpackScreenReaderText.expand }) );
 
         container.find( '.menu-item-has-children > a, .page_item_has_children > a' ).after( dropdownToggle );
@@ -22,7 +22,7 @@
                 var _this = $( '.menu-item-has-children' ),
                     screenReaderSpan = _this.find( '.screen-reader-text' );
                     dropdownSymbol = _this.find( '.dropdown-symbol' );
-                    dropdownSymbol.text( dropdownSymbol.text() === '►' ? '▼' : '►' );
+                    dropdownSymbol.html( dropdownSymbol.html() === '<i class="fa fa-angle-right" aria-hidden="true"></i>' ? '<i class="fa fa-angle-down" aria-hidden="true">' : '<i class="fa fa-angle-right" aria-hidden="true"></i>' );
 
                 e.preventDefault();
                 _this.toggleClass( 'toggled-on' );
@@ -34,11 +34,11 @@
             });
         } else {
             
-            container.find( '.menu-item-has-children' ).hover( function( e ) {
+            container.find( '.menu-item-has-children' ).click( function( e ) {
                 var _this = $( this ),
                     screenReaderSpan = _this.find( '.screen-reader-text' );
                     dropdownSymbol = _this.find( '.dropdown-symbol' );
-                    dropdownSymbol.text( dropdownSymbol.text() === '►' ? '▼' : '►' );
+                    dropdownSymbol.html( dropdownSymbol.html() === '<i class="fa fa-angle-right" aria-hidden="true"></i>' ? '<i class="fa fa-angle-down" aria-hidden="true">' : '<i class="fa fa-angle-right" aria-hidden="true"></i>' );
 
                 e.preventDefault();
                 _this.toggleClass( 'toggled-on' );

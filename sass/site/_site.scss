@@ -2,6 +2,7 @@
 ## Global layouts
 --------------------------------------------------------------*/
 @import "../layout/global";
+@import "../layout/animation";
 
 /*--------------------------------------------------------------
 ## Header
@@ -12,8 +13,13 @@
 ## Pages
 --------------------------------------------------------------*/
 @import "pages/_home";
-@import "pages/_services";
-@import "pages/_contact";
+
+/*--------------------------------------------------------------
+## Woocommerce Pages
+--------------------------------------------------------------*/
+@import "woocommerce/_general";
+@import "woocommerce/_products";
+@import "woocommerce/_checkout";
 
 /*--------------------------------------------------------------
 ## Archives

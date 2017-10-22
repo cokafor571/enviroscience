@@ -2,6 +2,7 @@
   max-height: 100vh;
   overflow: hidden;
   position: relative;
+  flex: 7;
 
   @include dark-background;
 
@@ -11,43 +12,37 @@
   }
 }
 
-//page header enviroscience info
-.page-header {
-  display: none;
+//page header
+.header-group {
+  position: relative;
 
-  @media screen and (min-width: $query__small) {
-    color: rgba(255, 255, 255, .7);
-    display: flex;
-    position: absolute;
-    top: 0;
-    width: 70%;
-    left: 15%;
-    font-size: 1rem;
-    z-index: 1;
-    border-bottom: 1px solid;
+  .page-header {
+    display: none;
 
-    .header-location {
-      flex: 3;
-    }
+    @media screen and (min-width: $query__small) {
+      background: $color__site-dust;
+      color: rgba(255, 255, 255, .85);
+      display: flex;
+      height: 40px;
+      width: 100%;
+      font-size: 1rem;
+      z-index: 1;
+      align-items: center;
 
-    .header-number,
-    .header-email {
-      flex: 1; 
+      p {
+          margin: auto auto;
+      }
+
+      i {
+        right: 50px;
+        position: relative;
+        cursor: pointer;
+        font-size: 1.1rem;
+      }
     }
   }
 }
-
-.site-header {
-    position: absolute;
-    top: 110px;
-    z-index: 2;
-    color: #fff;
-    left: 10%;
-
-  @media screen and (min-width: $query__small) {
-    top: 200px;
-  }
-}
+  
 
 .site-branding {
   min-height: 65px;
@@ -59,6 +54,9 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
+    text-align: center;
+    text-shadow: 1px 1px #444040;
 
     .site-title {
       margin: 0;
@@ -72,7 +70,7 @@
       }
 
       a {
-        color: white;
+        color: rgba(255,255,255,.9);
         text-decoration: none;
 
         &:hover,
@@ -88,6 +86,20 @@
       font-family: $font__sans;
       font-weight: 400;
       padding: 0 1em;
+      display: flex;
+      flex-direction: column;
+
+      button {
+        width: 40%;
+        margin: 1em auto 0;
+        background: transparent;
+        border: 2px solid #fff;
+        letter-spacing: 1px;
+        padding: 10px;
+        font-family: $font__sans;
+        font-size: .8rem;
+        color: #fff;
+      }
 
       @media screen and ( min-width: $query__small ) {
         font-size: 1.05rem;
@@ -100,14 +112,11 @@
 @media screen and (min-width: $query__medium) {
   .site-header {
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    top: 375px;
   }
 
   .site-branding {
-    width: 35%;
-    flex: 1 0 auto;
+    background: $color__site-dust;
+    flex: 3;
   }
 }
 

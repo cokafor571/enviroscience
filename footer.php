@@ -13,6 +13,7 @@
 
 	</div><!-- #content -->
 
+    <?php echo do_shortcode("[mc4wp_form id='47']"); ?>
     <?php get_sidebar( 'footer' ); ?>
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
@@ -25,7 +26,7 @@
         <?php } ?>
         
 		<div class="site-info">
-			&copy; EnviroScience Solutions 2017
+			&copy; Tribal Gauges 2017
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

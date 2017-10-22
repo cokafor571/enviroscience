@@ -4,9 +4,12 @@
             navDistance = $('.main-navigation').offset().top,
             nav = $('.main-navigation');
 
-        if ( navDistance < scrollTop ) {
+        if ( navDistance + 100 < scrollTop ) {
             nav.addClass('fixed-nav');
-        } else if ( $(window).width() > 600  && scrollTop < 56.4 ) {
+            nav.animate({
+                top: 0 //This value of 0 is how far you want the sidebar to animate.
+            });
+        } else if ( $(window).width() > 600  && scrollTop < 40 ) {
             nav.removeClass( 'fixed-nav' ); 
         }
 

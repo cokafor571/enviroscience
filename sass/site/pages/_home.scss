@@ -1,281 +1,122 @@
-// hide breadcrumb
-.page-id-4 {
+// gauges and fake gauges
+.gauges,
+.fake-gauges {
 
-    #breadcrumbs {
-        display: none;
-    }
-}
+    h1 {
+        text-align: center;
+        font-size: 1.75rem;
 
-//services
-.services {
-    width: 100%;
-    justify-content: space-around;
-    margin: 2em auto;
-    background: #dee3e6;
-    padding: 0 2em;
-
-    @media screen and ( min-width: $query__medium ) {
-        width: 70%;
+        @include title-uline;
     }
 
-    .services-header {
-        display: block;
-        align-items: center;
-
-        @media screen and ( min-width: $query__medium ) {
-            display: flex;
-        }
-        
-        .headline {
-            font-family: $font__sans;
-            flex: 4;
-            margin-right: 2em;
-            padding-right: 0;
-
-            @media screen and ( min-width: $query__medium ) {
-                padding-right: 1em;
-            }
-
-            h1 {
-                font-size: 1rem;
-
-                @media screen and ( min-width: $query__small ) {
-                    font-size: 1.1rem;
-                }
-
-                @media screen and ( min-width: $query__medium ) {
-                    font-size: 1.4rem;
-                }
-            }
-
-            p {
-                font-size: .95rem;
-
-                @media screen and ( min-width: $query__medium ) {
-                    font-size: 1.15rem;
-                }
-            }
-        }
-
-        .quote-button {
-            flex: 1;
-
-            button {
-                background: $color__site-black;
-                color: #fff;
-                padding: .6em 1em .6em;
-                height: 40px;
-                width: 120px;
-                font-family: $font__sans;
-                font-size: 1rem;
-                display: block;
-                margin: 0 auto;
-
-                &:hover {
-                    border-color: $color__site-black;
-                    background: transparent;
-                    color: $color__site-black;
-                }
-            }
-        }
-    }
-}
-
-//service cards
-.service-cards {
-    max-width: 1450px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-evenly;
-    margin: 3em auto 0;
-    align-items: flex-start;
-
-    @media screen and ( min-width: $query__small ) {
-        flex-direction: row;
-    }
-
-    .asbestos-card,
-    .lead-card,
-    .mold-card,
-    .soil-card,
-    .home-improvement-card {
+    .gauge-types,
+    .fake-gauge-types {
+        max-width: 1280px;
         display: flex;
-        flex-direction: column;
-        background: $color__site-green;
-        border-radius: 4px;
-        margin: 1em auto 2em;
+        position: relative;
+        margin: 0 auto;
 
-        img {
-            max-width: 100%;
-            width: 300px;
-            height: auto;
-            position: relative;
-            right: 0;
+        .plugs-gauges,
+        .spirals-tapers-gauges,
+        .tunnels-gauges,
+        .fake-spiral-tapers-gauges,
+        .fake-hanging-woods-gauges,
+        .fake-plug-gauges {
+            margin: 0 auto;
 
-            @media screen and ( min-width: $query__small ) {
-                width: 375px;
-                right: 60px;
-                bottom: 25px;
-            }
-        }
-
-        .asbestos-text,
-        .lead-text,
-        .mold-text,
-        .soil-text,
-        .home-improvement-text {
-            color: #fff;
-            width: 300px;
-            padding-bottom: 1em;
-
-            @media screen and ( min-width: $query__small ) {
-                width: 375px;
+            .plugs-img,
+            .spirals-tapers-img,
+            .tunnels-img,
+            .fake-plugs-img,
+            .fake-hanging-woods-img,
+            .fake-plug-img {
+                position: relative;
+                z-index: 0;
+                @include dark-background;
             }
 
-            h2 {
-                font-size: 1.1rem;
-                font-family: $font__sans;
-                text-align: center;
-                text-decoration: underline;
-
-                @media screen and ( min-width: $query__small ) {
-                    font-size: 1.2rem;
-                }
-            }
-
-            p {
-                padding: .5em 1em;
-                font-size: 1.05rem;
-                color: rgba( 255,255,255,.8 );
-
-                @media screen and ( min-width: $query__small ) {
-                    font-size: 1rem;
-                }
+            img {
+                max-width: 100%;
+                height: auto;
+                display: block;
             }
 
             button {
-                margin: 0 auto;
-                display: block;
-                border-radius: 30px;
+                color: #fff;
+                padding: 5px 10px;
+                border: 2px solid #fff;
                 background: transparent;
-                color: #fff;
-                border-color: #fff;
-                border-width: 3px;
+                position: relative;
+                z-index: 2;
+                top: -70px;
+                display: block;
+                margin: 0 auto;
 
-                &:hover {
-                    background: #fff;
-                    color: $color__site-green;
+                h2 {
+                    font-size: 1rem;
+                    font-weight: bold;
                 }
+            }
+        }
+    }    
+}
+
+//free bag and piercing divides
+.divider {
+    width: 1255px;
+    max-width: 100%; 
+    border-bottom: 5px double #ccc;
+    height: 2.5em;
+    margin: 0 auto;
+    text-align: center;
+
+    .free-bag,
+    .piercing-care {
+        display: inline-block;
+        background: #eee;
+        padding: 0 5%;
+        
+        .flex-bag {
+            display: flex;
+            align-items: center;
+            
+            h2 {
+                font-size: 1.25rem;
+            }
+
+            img {
+                max-width: 100%;
+                height: auto;
             }
         }
     }
 }
 
-//about 
-.about {
-    display: block;
-    align-items: center;
-
-    @media screen and ( min-width: 1400px ) {
-        display: flex;
-    }
+//accessories
+.accessories-block {
+    display: flex;
+    max-width: 1280px;
+    margin: 0 auto;
 
     img {
         display: block;
         margin: 0 auto;
     }
 
-    .about-text {
-        padding: 0 2em;
+    .accessories {
+        margin: 0 auto;
 
-        h1 {
-            font-size: 1.5rem;
-            font-family: $font__serif;
+        h2 {
+            font-size: 1.25rem;
+            @include title-uline;
 
-            @media screen and ( min-width: $query__small ) {
-                font-size: 2rem;
+            &:after {
+                margin: 0;
             }
         }
 
         p {
-            font-family: $font__sans;
-            font-size: .95rem;
-
-            @media screen and ( min-width: $query__small ) {
-                font-size: 1rem;
-            }
-        }
-    }
-}
-
-.contact-now {
-    background: url( 'https://envirosciencesolutions.com/wp-content/uploads/2017/10/enviro-full.jpg' ) no-repeat center center;
-    background-size: cover;
-    max-height: 500px;
-    height: 400px;
-    overflow: hidden;
-    background-attachment: fixed;
-    @include slanted-background;
-    position: relative;
-    z-index: 0;
-
-    .contact-now-text {
-        background: #dee3e6;;
-        box-shadow: 0 0 100px 10px rgba(0, 0, 0, .5);
-        margin: auto;
-        width: 80%;
-        z-index: 1;
-        position: relative;
-        top: 25%;
-        padding: 1em;
-
-        @media screen and ( min-width: 465px ) {
-            padding: 2em;
-        }
-
-        @media screen and ( min-width: $query__medium ) {
-            width: 60%;
-        }
-
-        h1 {
-            font-family: $font__sans;
-            font-size: 1rem;
-            text-align: center;
-
-            @media screen and ( min-width: 465px ) {
-                font-size: 1.25rem;
-            }
-
-            @media screen and ( min-width: $query__medium ) {
-                font-size: 1.5rem;
-            }
-        }
-
-        .contact-info {
-            display: block;
-            justify-content: space-around;
-
-            @media screen and ( min-width: 775px ) {
-                display: flex;
-            }
-
-            p {
-                font-size: .95rem;
-                margin-right: .5em;
-
-                @media screen and ( min-width: $query__medium ) {
-                    font-size: 1.15rem;
-                }
-
-                i {
-                    border-radius: 50%;
-                    border: 2px solid #edf2f9;;
-                    color: #3a4d6a;
-                    margin-right: .5em;
-                    padding: .5em;
-                }
-            }
+            font-size: 1.25rem;
         }
     }
 }
